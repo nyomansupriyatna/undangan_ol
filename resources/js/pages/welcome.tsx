@@ -447,8 +447,8 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                 </main>
 
                                 {/* Ucapan dan doa*/}
-                                <main id='ucapan' className='border-t-4 border-[#c9a965] min-h-screen py-6 px-1'>
-                                   <Label className='flex font-bold mx-auto justify-center'>Ucapan dan Doa</Label>
+                                <main id='ucapan' className='border-t-4 border-[#c9a965] min-h-screen py-2 px-1'>
+                                   <Label className='flex font-bold mx-auto justify-center py-2'>Ucapan dan Doa</Label>
 
                                     <div className="flex flex-1 flex-col gap-4 rounded-xl p-0">
                                         <Card>
@@ -461,7 +461,7 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                                 >
                                                     <div className="grid gap-6">
                                                         {/* Nama ucapan */}
-                                                        <div className="grid gap-2">
+                                                        <div className="grid gap-1">
                                                             <Label>
                                                                 Nama 
                                                             </Label>
@@ -481,7 +481,7 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                                         </div>
 
                                                         {/* Alamat ucapan */}
-                                                        <div className="grid gap-2">
+                                                        <div className="grid gap-1">
                                                             <Label>
                                                                 Ucapan / Doa
                                                             </Label>
@@ -493,7 +493,7 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                                                 name="ucapan"
                                                                 placeholder="Ucapan"
                                                                 // autoFocus
-                                                                rows={4}
+                                                                rows={2}
                                                                 tabIndex={2}
                                                                 disabled={processing}
                                                             />

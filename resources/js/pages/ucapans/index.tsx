@@ -58,11 +58,11 @@ export default function Index({ ...props }: { ucapans: ucapan[] }) {
                         as="button"
                         href={route('ucapans.create')}
                     >
-                        <CirclePlusIcon className="me-2" /> Add ucapan
+                        <CirclePlusIcon className="me-2" /> Tambah ucapan
                     </Link>
                 </div>
 
-                <div className="overflow-hidden rounded-lg border bg-white shadow-sm">
+                <div className="overflow-scroll rounded-lg border bg-white shadow-sm">
                     <table className="w-full table-auto">
                         <thead>
                             <tr className="bg-gray-700 text-white">
@@ -90,38 +90,41 @@ export default function Index({ ...props }: { ucapans: ucapan[] }) {
                                         <td className="border px-4 py-2 text-center">
                                             {ucapan.keterangan}
                                         </td>
-                                        <td className="border px-4 py-2 text-center">
+                                        <td className="border px-4 py-2 text-center whitespace-nowrap">
                                             {ucapan.created_at}
                                         </td>
                                         <td className="border px-4 py-2 text-center">
-                                            <Link
-                                                as="button"
-                                                className="cursor-pointer rounded-lg bg-sky-600 p-2 text-white hover:opacity-80"
-                                                href={route('ucapans.show', ucapan.id)}
-                                            >
-                                                <Eye size={18} />
-                                            </Link>
+                                            <div className='flex gap-1'>
+                                                 <Link
+                                                    as="button"
+                                                    className="cursor-pointer rounded-lg bg-sky-600 p-2 text-white hover:opacity-80"
+                                                    href={route('ucapans.show', ucapan.id)}
+                                                >
+                                                    <Eye size={18} />
+                                                </Link>
 
-                                            <Link
-                                                as="button"
-                                                className="ms-2 cursor-pointer rounded-lg bg-blue-600 p-2 text-white hover:opacity-80"
-                                                href={route('ucapans.edit', ucapan.id)}
-                                            >
-                                                <Pencil size={18} />
-                                            </Link>
+                                                <Link
+                                                    as="button"
+                                                    className="ms-2 cursor-pointer rounded-lg bg-blue-600 p-2 text-white hover:opacity-80"
+                                                    href={route('ucapans.edit', ucapan.id)}
+                                                >
+                                                    <Pencil size={18} />
+                                                </Link>
 
-                                            <Button
-                                                className="ms-2 cursor-pointer rounded-lg bg-red-600 p-2 text-white hover:opacity-80"
-                                                onClick={() => {
-                                                    if (confirm('Are you sure want to delete this ucapan?')) 
-                                                        {
-                                                        router.delete(route('ucapans.destroy', ucapan.id));
-                                                    }
-                                                }}
-                                                href={route('ucapans.destroy', ucapan.id)}
-                                            >
-                                                <Trash2 size={18} />
-                                            </Button>
+                                                <Button
+                                                    className="ms-2 cursor-pointer rounded-lg bg-red-600 p-2 text-white hover:opacity-80"
+                                                    onClick={() => {
+                                                        if (confirm('Are you sure want to delete this ucapan?')) 
+                                                            {
+                                                            router.delete(route('ucapans.destroy', ucapan.id));
+                                                        }
+                                                    }}
+                                                    href={route('ucapans.destroy', ucapan.id)}
+                                                >
+                                                    <Trash2 size={18} />
+                                                </Button>
+                                            </div>
+                                           
                                         </td>
                                     </tr>
                                 ))
