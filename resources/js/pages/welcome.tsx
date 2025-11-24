@@ -300,12 +300,12 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                 </>
 
                                 {/* Acara */}
-                                <main id='acara' className="px-4 pt-4 text-[#493002] flex justify-center flex-col h-screen">
+                                <main id='acara' className="px-4 pt-4 text-[#493002] flex justify-center flex-col h-screen max-h-screen">
                                    
                                     <img className='h-16 mx-auto mb-4' src="\image\swastyastu.webp" alt="logo" />
                                     <label className='mx-auto font-bold md:text-lg pt-3 noto-serif-balinese-regular'>Undangan</label>
                                     <label className='mx-auto font-bold md:text-lg noto-serif-balinese-regular'>Upacara Manusa Yadnya</label>
-                                    <label className='mx-auto  font-bold text-xl md:text-2xl py-4 '>Metatah / Mepandes / Potong Gigi</label>
+                                    <label className='mx-auto text-center font-bold text-md md:text-xl py-4 '>Metatah / Mepandes / Potong Gigi</label>
                                     
                                     <div className='flex flex-col justify-center items-center'>
                                         <label className='mx-auto text-md text-center'>Kami sangat berterimakasih jika Bapak/Ibu/Saudara/i:</label>
@@ -313,12 +313,12 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                        <div className='mx-auto flex flex-col w-fit px-5 text-center'>
                                         <label className='mx-auto text-lg font-bold mb-4 '>{searchParams.get('nama')}</label>
                                             
-                                            <label className='mx-auto text-md text-center mb-6'>berkenan hadir pada:</label>
-                                            <div className='border rounded-md flex flex-col py-3 px-5 text-[#493002]  border-yellow-800 mx-auto'>
-                                                <label className='mx-auto text-xl md:text-2xl font-bold text-center noto-serif-balinese-regular'>Selasa, 30 Des 2025</label>
-                                                <label className='mx-auto text-xl md:text-2xl font-bold text-center noto-serif-balinese-regular'>Pukul 11.00 - 13.00</label>
+                                            <label className='mx-auto text-md text-center mb-3'>berkenan hadir pada:</label>
+                                            <div className='border rounded-md flex flex-col py-2 px-5 text-[#493002]  border-yellow-800 mx-auto'>
+                                                <label className='mx-auto text-md md:text-xl font-bold text-center noto-serif-balinese-regular'>Selasa, 30 Des 2025</label>
+                                                <label className='mx-auto text-md md:text-xl font-bold text-center noto-serif-balinese-regular'>Pukul 11.00 - 14.00</label>
                                             </div>
-                                            <label className='mx-auto text-sm md:text-md font-bold text-center noto-serif-balinese-regular mt-6 py-3 text-[#493002] '>Lokasi di <span className='font-bold '>Taman Prakerti Bhuana</span>, Beng, Gianyar</label>
+                                            <label className='mx-auto text-sm md:text-md font-bold text-center noto-serif-balinese-regular mt-2 py-2 text-[#493002] '>Lokasi di <span className='font-bold '>Taman Prakerti Bhuana</span>, Beng, Gianyar</label>
 
                                         </div>
                                         <label className='mx-auto text-xs pt-6 pb-3 text-center'></label>
@@ -328,43 +328,43 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                 </main>
 
                                 {/* Sane Mepandes*/}
-                                <main id='mepandes' className='border-t-4 border-[#c9a965] py-3 px-2 min-h-screen'>
+                                <main id='mepandes' className='border-t-4 border-[#c9a965] pt-2 pb-3 px-2 min-h-screen'>
                                     <div>
                                         <div className='flex flex-col items-center justify-center'>
-                                            <label className='mx-auto font-bold text-md pt-3 pb-4 noto-serif-balinese-regular'>Om Swastyastu</label>
+                                            <label className='mx-auto font-bold text-md pt-1 pb-2 noto-serif-balinese-regular'>Om Swastyastu</label>
                                         </div>
-                                        <label className='flex flex-col justify-center items-center mx-auto text-sm text-center font-bold mb-3'>Atas Asung Kertha Wara Nugraha Ida Sang Hyang Widhi Wasa/Tuhan Yang Maha Esa, perkenankan kami mengundang Bapak/Ibu/Saudara/i pada Upacara Manusa Yadnya Mepandes/Metatah/Potong Gigi putra-putri kami:</label>
+                                        <label className='flex flex-col justify-center items-center mx-auto text-xs md:text-sm text-center font-bold mb-3'>Atas Asung Kertha Wara Nugraha Ida Sang Hyang Widhi Wasa/Tuhan Yang Maha Esa, perkenankan kami mengundang Bapak/Ibu/Saudara/i pada Upacara Manusa Yadnya Mepandes/Metatah/Potong Gigi putra-putri kami:</label>
                                     
                                         {/* box foto */}
-                                        <div className='border-2 border-[#c9a965] rounded-md px-2 py-3 bg-[#c46c7f]'>
+                                        <div className='border-2 border-[#c9a965] rounded-md p-2 bg-[#c46c7f]'>
                                             <div className='grid grid-cols-2 gap-4'>
                                                 <div className=' flex flex-col justify-center items-center '>
                                                     <img className='h-24 w-24 rounded-full border-2 border-[#c9a965] animate-wingle mb-2' src="\image\diva.png" alt="foto" />
-                                                    <label className='flex text-center mx-auto text-sm font-bold mb-3  ' >Ni Putu Kartika Diva Putri</label></div>
+                                                    <label className='flex text-center mx-auto text-xs md:text-sm font-bold mb-2  ' >Ni Putu Kartika Diva Putri</label></div>
                                                 <div className=' flex flex-col justify-center items-center'>
                                                     <img className='h-24 w-24 rounded-full border-2 border-[#c9a965] mb-2 animate-wingle' src="\image\rai-kinara3.png" alt="foto" />
-                                                    <label className='flex text-center mx-auto text-sm font-bold mb-3' >I Made Kinara Sukmantara</label>
+                                                    <label className='flex text-center mx-auto text-xs md:text-sm font-bold mb-2' >I Made Kinara Sukmantara</label>
                                                 </div>
                                             </div>
                                             <div className='flex justify-center flex-col'>
-                                                <label className='flex text-center mx-auto text-sm font-bold mt-3'>Putri dan Putra dari Pasangan</label>
-                                                <label className='flex text-center mx-auto text-sm font-bold'>I Made Dwipayana ST & Diyah Retnowati SPd.</label>
+                                                <label className='flex text-center mx-auto text-xs md:text-sm font-bold mt-3'>Putri dan Putra dari Pasangan</label>
+                                                <label className='flex text-center mx-auto text-xs md:text-sm font-bold'>I Made Dwipayana ST & Diyah Retnowati SPd.</label>
                                             </div>
                                         </div>
                                         {/* box foto */}
-                                        <div className='border-2 border-[#c9a965] rounded-md px-2 py-3 bg-[#c46c7f] mt-4'>
+                                        <div className='border-2 border-[#c9a965] rounded-md p-2 bg-[#c46c7f] mt-4'>
                                             <div className='grid grid-cols-2 gap-4'>
                                                 <div className=' flex flex-col justify-center items-center '>
                                                     <img className='h-24 w-24 rounded-full border-2 border-[#c9a965] mb-2 animate-wingle' src="\image\tita.png" alt="foto" />
-                                                    <label className='flex text-center mx-auto text-sm font-bold mb-3 '>Ni Putu Elsita Esayana</label></div>
+                                                    <label className='flex text-center mx-auto text-xs md:text-sm font-bold mb-3 '>Ni Putu Elsita Esayana</label></div>
                                                 <div className=' flex flex-col justify-center items-center'>
                                                     <img className='h-24 w-24 rounded-full border-2 border-[#c9a965] mb-2 animate-wingle' src="\image\vina.png" alt="foto" />
-                                                    <label className='flex text-center mx-auto text-sm font-bold mb-3'>Ni Made Vinasuya Reyana</label>
+                                                    <label className='flex text-center mx-auto text-xs md:text-sm font-bold mb-3'>Ni Made Vinasuya Reyana</label>
                                                 </div>
                                             </div>
                                             <div className='flex justify-center flex-col'>
-                                                <label className='flex text-center mx-auto text-sm font-bold mt-3'>Putri dari Pasangan</label>
-                                                <label className='flex text-center mx-auto text-sm font-bold'>I Nyoman Supriyatna SKom & Ni Ketut Noviani</label>
+                                                <label className='flex text-center mx-auto text-xs md:text-sm font-bold mt-3'>Putri dari Pasangan</label>
+                                                <label className='flex text-center mx-auto text-xs md:text-sm font-bold'>I Nyoman Supriyatna SKom & Ni Ketut Noviani</label>
                                             </div>
                                         </div>
                                     </div>
@@ -395,16 +395,16 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                 </main>
 
                                 {/* galery foto*/}
-                                <main id='galery' className='border-t-4 border-[#c9a965] min-h-screen py-6 px-2'>
+                                <main id='galery' className='border-t-4 border-[#c9a965] h-screen  mx-auto'>
                                    
-                                    <div className='relative border-2 border-amber-400 min-h-screen h-full w-full bg-green-300'>
+                                    <div className='relative h-full overflow-y-scroll w-full mx-auto'>
                                     <h1 className='font-bold p-2'>Galery foto</h1>
                                     
-                                    <div className='flex flex-col'>
-                                            <div  className='flex flex-wrap justify-center min-h-48 h-48 w-fit mb-3'>
+                                    <div className='flex flex-col h-full'>
+                                            <div  className='flex flex-wrap justify-center md:min-h-48 h-32 md:h-48 w-fit mb-3 gap-2 md:gap3'>
                                                 {slides.map((slide, index) => (
-                                                    <div key={index} className='flex  border-2 border-blue-500 min-h-24 h-full '>
-                                                        <img onClick={()=>viewImage(index)} src={`\\gallery\\${slide.src}`} alt="{slide.title}" className='border-2 border-red-500 h-full object-cover' />
+                                                    <div key={index} className='flex  min-h-24 h-full  '>
+                                                        <img onClick={()=>viewImage(index)} src={`\\gallery\\${slide.src}`} alt="{slide.title}" className=' h-full object-cover rounded-md shadow-md' />
 
                                                     </div>
                                                 ))}
@@ -417,8 +417,7 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
 
 
                                     {/* full view on klik */}
-
-                                        {opImage && <div className='absolute flex justify-center items-center opacity-100 inset-0 max-w-lg'>
+                                    {opImage && <div className='absolute flex justify-center items-center opacity-100 inset-0 max-w-lg'>
                                         <div className='absolute flex items-center h-full opacity-100 border-amber-900 bg-white'>
                                             
                                             <div onClick={()=>setOpImage(false)} className='absolute z-70 right-0 top-0 rounded-bl-sm bg-grey-300 bg-red-100 hover:cursor-pointer px-2 bg-opacity-100 text-right text-xl font-bold'>

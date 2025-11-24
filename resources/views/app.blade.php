@@ -40,6 +40,28 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
+    <link href="https://fonts.googleapis.com/css2?family=Amarante&family=Momo+Signature&family=Noto+Serif+Balinese&display=swap" rel="stylesheet">
+
+    <style>
+        .amarante-regular {
+            font-family: "Amarante", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .momo-signature-regular {
+            font-family: "Momo Signature", cursive;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .noto-serif-balinese-regular {
+            font-family: "Noto Serif Balinese", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+    </style>
+
     @routes
     @viteReactRefresh
     @vite(['resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
