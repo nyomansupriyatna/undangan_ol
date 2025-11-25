@@ -26,6 +26,36 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
     const [index, setIndex] = useState<number>();
     const [opImage, setOpImage] = useState<boolean>(false);
 
+    // count down
+    const targetDate = new Date("2025-12-30T11:00:00").getTime();
+    const [timeLeft, setTimeLeft] = useState({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+    });
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+            clearInterval(timer);
+            return;
+        }
+
+        setTimeLeft({
+            days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+            hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+            minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+            seconds: Math.floor((distance % (1000 * 60)) / 1000),
+        });
+        }, 1000);
+
+        return () => clearInterval(timer);
+    }, []);
+
     const slides = [
         {
             src: 'tita.png',
@@ -300,9 +330,9 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                 </>
 
                                 {/* Acara */}
-                                <main id='acara' className="px-4 pt-4 text-[#c9a965] flex justify-center flex-col h-screen max-h-screen">
+                                <main id='acara' className="px-4 text-[#c9a965] flex justify-center flex-col h-screen max-h-screen">
                                    
-                                    <img className='h-16 mx-auto mb-4' src="\image\swastyastu-gold.webp" alt="logo" />
+                                    <img className='h-16 mx-auto mb-2 -mt-24' src="\image\swastyastu-gold.webp" alt="logo" />
                                     <label className='mx-auto font-bold md:text-lg pt-3 noto-serif-balinese-regular'>Undangan</label>
                                     <label className='mx-auto font-bold md:text-lg noto-serif-balinese-regular'>Upacara Manusa Yadnya</label>
                                     <label className='mx-auto text-center font-bold text-md md:text-xl py-4 animate-wingle momo-signature-regular '>Metatah / Mepandes / Potong Gigi</label>
@@ -310,19 +340,42 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                     <div className='flex flex-col justify-center items-center'>
                                         <label className='mx-auto text-md text-center'>Kami sangat berterimakasih jika Bapak/Ibu/Saudara/i:</label>
                                         {/* kotak nama dan alamat */}
-                                       <div className='mx-auto flex flex-col w-fit px-5 text-center'>
-                                        <label className='mx-auto text-lg font-bold mb-4 '>{searchParams.get('nama')}</label>
+                                       <div className='mx-auto flex flex-col w-fit px-3 text-center'>
+                                        <label className='mx-auto text-lg font-bold mb-2 '>{searchParams.get('nama')}</label>
                                             
                                             <label className='mx-auto text-md text-center mb-3'>berkenan hadir pada:</label>
                                             <div className='border rounded-md flex flex-col py-2 px-5  border-yellow-800 mx-auto'>
                                                 <label className='mx-auto text-md md:text-xl font-bold text-center noto-serif-balinese-regular'>Selasa, 30 Desember 2025</label>
                                                 <label className='mx-auto text-md md:text-xl font-bold text-center noto-serif-balinese-regular'>Pukul 11.00 - 14.00</label>
                                             </div>
-                                            <label className='mx-auto text-sm md:text-md font-bold text-center  mt-2 py-2 font-sans italic '>Lokasi Acara di: <span className=''>Taman Prakerti Bhuana</span>, Beng, Gianyar</label>
+                                            <label className='mx-auto text-sm md:text-md font-bold text-center  mt-2 py-2 font-sans italic mb-2 '>Lokasi Acara di: <span className=''>Taman Prakerti Bhuana</span>, Beng, Gianyar</label>
 
                                         </div>
-                                        <label className='mx-auto text-xs pt-6 pb-3 text-center'></label>
-                                    
+                                    </div>
+                                  
+                                    {/* count down */}
+                                    < div className='flex justify-center'>
+                                        <div className="flex gap-2 text-center">
+                                            <div className="bg-gray-800 p-2 rounded-xl w-16">
+                                                <p className="text-3xl font-bold">{timeLeft.days}</p>
+                                                <p className="text-sm">Hari</p>
+                                            </div>
+
+                                            <div className="bg-gray-800 p-2 rounded-xl w-16">
+                                                <p className="text-3xl font-bold">{timeLeft.hours}</p>
+                                                <p className="text-sm">Jam</p>
+                                            </div>
+
+                                            <div className="bg-gray-800 p-2 rounded-xl w-16">
+                                                <p className="text-3xl font-bold">{timeLeft.minutes}</p>
+                                                <p className="text-sm">Menit</p>
+                                            </div>
+
+                                            <div className="bg-gray-800 p-2 rounded-xl w-16">
+                                                <p className="text-3xl font-bold">{timeLeft.seconds}</p>
+                                                <p className="text-sm">Detik</p>
+                                            </div>
+                                        </div>
                                     </div>
                                     
                                 </main>
@@ -392,17 +445,17 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                             </iframe>
                                         </div>
                                     </div>
-                                    <div className='flex flex-col justify-center mt-4 p-3'>
-                                        <label className='mx-auto font-serif mb-3'>Scan QR Code dibawah untuk mendapatkan lokasi upacara</label>
+                                    <div className='flex flex-col justify-center mt-4 p-3 mx-auto border border-amber-700'>
+                                        <label className='mx-auto font-serif mb-3 text-center'>Scan QR Code dibawah untuk mendapatkan lokasi upacara</label>
                                         <img  src="/image/QR-Code-Taman-Prakerti.png" alt="" className="mx-auto h-48 w-48 rounded" />
                                     </div>
                                 </main>
 
                                 {/* galery foto*/}
-                                <main id='galery' className='border-t-4 border-[#c9a965] h-screen  mx-auto'>
+                                <main id='galery' className='border-t-4 border-[#c9a965] h-screen mx-auto'>
                                    
-                                    <div className='relative h-full overflow-y-scroll w-full mx-auto'>
-                                    <h1 className='font-bold p-2'>Gallery Foto</h1>
+                                    <div className='relative h-full overflow-y-scroll w-full mx-auto border-2'>
+                                    <h1 className='flex font-bold mx-auto justify-center py-2'>Gallery Foto</h1>
                                     
                                     <div className='flex flex-row justify-center mx-auto '>
                                             <div  className='flex flex-wrap gap-2 md:gap-3 justify-center md:min-h-48 h-32 md:h-48 w-fit mb-3 text-center'>
