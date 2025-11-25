@@ -28,11 +28,6 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
 
     const slides = [
         {
-            src: "diva.png",
-            title: 'Diva',
-            description: 'Description Diva',
-        },
-        {
             src: 'tita.png',
             title: 'Tita',
             description: 'Description Tita',
@@ -41,6 +36,11 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
             src: 'rai.png',
             title: 'Rai',
             description: 'Description Rai',
+        },
+        {
+            src: "rai2.png",
+            title: 'Diva',
+            description: 'Description Diva',
         },
         {
             src: 'vina.png',
@@ -257,7 +257,7 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                     >
                                         <div className='flex flex-col justify-center items-center text-xs'>
                                             <Images  />
-                                            galery
+                                            gallery
                                         </div>
                                     </a>
                                     
@@ -271,7 +271,7 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                             className='fixed w-full max-w-lg bottom-16 z-50 flex flex-col mx-auto hover:cursor-pointer'>
                             
                             {isPlaying ? (<span className='flex justify-end mr-5'>
-                                <Volume2 className='text-[#c9a965] h-8 w-8 opacity-100 bg-gray-800 px-1 rounded-full'/>
+                                <Volume2 className='text-[#c9a965] h-8 w-8 opacity-70 bg-gray-800 px-1 rounded-full'/>
                             </span>) :
                             (<span className='flex justify-end mr-5'>
                                 <VolumeX className='text-gray-700 h-8 w-8 opacity-60 bg-red-200 px-1 rounded-full'/>
@@ -333,14 +333,14 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                         <div className='flex flex-col items-center justify-center'>
                                             <label className='mx-auto font-bold text-md pt-6 pb-3 momo-signature-regular md:text-xl ease-in-out animate-fadeInScale'>Om Swastyastu</label>
                                         </div>
-                                        <label className='flex flex-col justify-center items-center text-xs md:text-sm text-center font-bold mb-6 momo-signature-regular mx-4 md:mx-5 leading-7'>Atas Asung Kertha Wara Nugraha Ida Sang Hyang Widhi Wasa/Tuhan Yang Maha Esa, perkenankan kami mengundang Bapak/Ibu/Saudara/i pada Upacara Manusa Yadnya Mepandes/Metatah/Potong Gigi putra-putri kami:</label>
+                                        <label className='flex flex-col justify-center items-center text-xs md:text-sm text-center font-bold mb-6 momo-signature-regular mx-4 md:mx-5 leading-5'>Atas Asung Kertha Wara Nugraha Ida Sang Hyang Widhi Wasa/Tuhan Yang Maha Esa, perkenankan kami mengundang Bapak/Ibu/Saudara/i pada Upacara Manusa Yadnya Mepandes/Metatah/Potong Gigi putra-putri kami:</label>
                                     
                                         {/* box foto */}
                                         <div className='border-2 border-[#302103] rounded-md px-3 py-6 bg-gray-950 noto-serif-balinese-regular'>
                                             <div className='flex flex-col justify-center'>
                                                 <div className=' flex flex-col justify-center items-center '>
                                                     {/* <img className='h-24 w-24 rounded-full border-2 border-[#c9a965] animate-wingle mb-2' src="\image\diva.png" alt="foto" /> */}
-                                                    <label className='flex text-center mx-auto text-xs md:text-sm  mb-2  ' >Ni Putu Kartika Diva Putri</label></div>
+                                                    <label className='flex text-center mx-auto text-xs md:text-sm  mb-2  ' >Ni Putu Ayu Kartika Diva Putri</label></div>
                                                      <label className='flex text-center mx-auto text-xs md:text-sm  mb-2' >I Made Kinara Sukmantara</label>
                                                 <div className=' flex flex-col justify-center items-center'>
                                                     {/* <img className='h-24 w-24 rounded-full border-2 border-[#c9a965] mb-2 animate-wingle' src="\image\rai-kinara3.png" alt="foto" /> */}
@@ -349,7 +349,7 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                             </div>
                                             <div className='flex justify-center flex-col mb-6'>
                                                 <label className='flex text-center mx-auto text-xs md:text-sm  mt-3'>Putri dan Putra dari Pasangan</label>
-                                                <label className='flex text-center mx-auto text-xs md:text-sm '>I Made Dwipayana & Diyah Retnowati </label>
+                                                <label className='flex text-center mx-auto text-xs md:text-sm'>I Made Dwipayana & Diyah Retnowati </label>
                                             </div>
 
                                             <hr className='border border-[#302103] mb-6' />
@@ -402,12 +402,12 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                 <main id='galery' className='border-t-4 border-[#c9a965] h-screen  mx-auto'>
                                    
                                     <div className='relative h-full overflow-y-scroll w-full mx-auto'>
-                                    <h1 className='font-bold p-2'>Galery foto</h1>
+                                    <h1 className='font-bold p-2'>Gallery Foto</h1>
                                     
-                                    <div className='flex flex-col h-full'>
-                                            <div  className='flex flex-wrap justify-center md:min-h-48 h-32 md:h-48 w-fit mb-3 gap-2 md:gap3'>
+                                    <div className='flex flex-row justify-center mx-auto '>
+                                            <div  className='flex flex-wrap gap-2 md:gap-3 justify-center md:min-h-48 h-32 md:h-48 w-fit mb-3 text-center'>
                                                 {slides.map((slide, index) => (
-                                                    <div key={index} className='flex  min-h-24 h-full  '>
+                                                    <div key={index} className='flex justify-center min-h-24 h-full  '>
                                                         <img onClick={()=>viewImage(index)} src={`\\gallery\\${slide.src}`} alt="{slide.title}" className=' h-full object-cover rounded-md shadow-md' />
 
                                                     </div>
