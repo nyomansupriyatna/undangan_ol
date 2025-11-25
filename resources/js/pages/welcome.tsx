@@ -138,11 +138,11 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
             </Head>
             {/* box hitam */}
             {/* <p className='fixed z-50 text-white bg-black  flex justify-start'>Mouse Y Offset: {mouseOffsetY}px</p> */}
-            <div  className="relative flex min-h-screen flex-col items-center  justify-center bg-black overflow-y-scroll  ">
+            <div  className="relative flex min-h-screen flex-col items-center  justify-center bg-gray-600 overflow-y-scroll  ">
                
 
                 {/* box undangan coklat max-widh-lg*/}
-                <div className="absolute mx-auto  border-4 border-[#c9a965] bg-linear-to-br from-pink-200 to-amber-900  text-[#3a2c02] w-full max-w-lg  justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0 ">
+                <div className="absolute mx-auto  border-4 border-[#c9a965] bg-linear-to-br repeating-linear-gradient from-black to-gray-900  text-[#3a2c02] w-full max-w-lg  justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0 ">
 
                     {/* halaman 0 sebelum buka undangan */}
                   
@@ -166,13 +166,13 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                         <img className='h-28 opacity-70' src="\image\ornamen-pojok2.webp" alt="" />
                                 </div>
                             </>
-                            <main className="px-4 pt-4 text-[#493002] flex justify-center flex-col">
+                            <main className="px-4 pt-4 flex justify-center flex-col text-[#c9a965]">
                                         
                                 <img className='h-28 mx-auto animate-pulse brightness-125' src="\image\ongk-sket.webp" alt="logo" />
 
-                                <label className='mx-auto md:text-lg pt-3  noto-serif-balinese-regular animate-fadeInScale '>UNDANGAN</label>
+                                <label className='mx-auto md:text-lg pt-3  noto-serif-balinese-regular animate-fadeInScale text-[#c9a965] '>UNDANGAN</label>
                                 <label className='mx-auto font-bold md:text-lg pb-4 noto-serif-balinese-regular '>Upacara Manusa Yadnya</label>
-                                <label className='mx-auto text-[#ecd1a3] font-bold text-xl md:text-2xl py-4 momo-signature-regular animate-wingle text-shadow-md  text-shadow-[rgb(56,39,0)]'>Metatah / Potong Gigi</label>
+                                <label className='mx-auto font-bold text-xl md:text-2xl py-4 momo-signature-regular animate-wingle text-amber-200 '>Metatah / Potong Gigi</label>
                                 
                                 <div className='flex flex-col justify-center items-center'>
                                     <label className='mx-auto text-xl py-2 '>Kepada Bapak/Ibu/Saudara/i:</label>
@@ -186,7 +186,7 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                     <label className='mx-auto text-xs pt-6 pb-3 text-center'>Tanpa mengurangi rasa hormat, kami bermaksud mengundang Anda untuk menghadiri acara kami</label>
 
                                     
-                                    {!bukaUndangan &&  (<Button className='m-auto w-fit hover:opacity-80 hover:cursor-pointer px-4 py-2 rounded border-amber-900  border-2 bg-[#ecd1a3] noto-serif-balinese-regular' onClick={openUndangan}>
+                                    {!bukaUndangan &&  (<Button className='m-auto w-fit hover:opacity-80 hover:cursor-pointer px-4 pt-3 pb-2 rounded border-amber-200  border-2 bg-[#614007] noto-serif-balinese-regular' onClick={openUndangan}>
                                     <span className=''>Buka Undangan</span>  
                                     </Button> )}
                                 </div>
@@ -203,7 +203,7 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                         <>
                        
                         {/* menu bar */}
-                        <footer className="fixed z-20 bottom-0 bg-linear-to-br from-pink-200 to-amber-900  text-[#3a2c02]  w-full max-w-lg text-sm border-x-4 border-y-2 border-[#c9a965] px-2">
+                        <footer className="fixed z-20 bottom-0 bg-linear-to-br from-black to-gray-800  text-[#c9a965]  w-full max-w-lg text-sm border-x-4 border-y-2 border-[#c9a965] px-2">
                             <nav className="flex items-center justify-between 3">
                                 <>
                                     <div
@@ -271,14 +271,14 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                             className='fixed w-full max-w-lg bottom-16 z-50 flex flex-col mx-auto hover:cursor-pointer'>
                             
                             {isPlaying ? (<span className='flex justify-end mr-5'>
-                                <Volume2 className='text-green-700 h-8 w-8 opacity-60 bg-green-200 px-1 rounded-full'/>
+                                <Volume2 className='text-[#c9a965] h-8 w-8 opacity-100 bg-gray-800 px-1 rounded-full'/>
                             </span>) :
                             (<span className='flex justify-end mr-5'>
-                                <VolumeX className='text-red-700 h-8 w-8 opacity-60 bg-red-200 px-1 rounded-full'/>
+                                <VolumeX className='text-gray-700 h-8 w-8 opacity-60 bg-red-200 px-1 rounded-full'/>
                             </span>)}
                         </div>
                         
-                        <div className="relative mx-auto  border-4 border-[#c9a965] bg-linear-to-br from-pink-200 to-amber-900  text-[#3a2c02] w-full max-w-lg  justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0 ">
+                        <div className="relative mx-auto  border-4 border-[#c9a965] bg-linear-to-br from-black to-gray-800 text-[#c9a965] w-full max-w-lg  justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0 ">
                             {/* <div className='relative bg-white pb-36'> */}
                                 <>
                                     {/* ornamen pojok atas kiri */}
@@ -300,12 +300,12 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                 </>
 
                                 {/* Acara */}
-                                <main id='acara' className="px-4 pt-4 text-[#493002] flex justify-center flex-col h-screen max-h-screen">
+                                <main id='acara' className="px-4 pt-4 text-[#c9a965] flex justify-center flex-col h-screen max-h-screen">
                                    
-                                    <img className='h-16 mx-auto mb-4' src="\image\swastyastu.webp" alt="logo" />
+                                    <img className='h-16 mx-auto mb-4' src="\image\swastyastu-gold.webp" alt="logo" />
                                     <label className='mx-auto font-bold md:text-lg pt-3 noto-serif-balinese-regular'>Undangan</label>
                                     <label className='mx-auto font-bold md:text-lg noto-serif-balinese-regular'>Upacara Manusa Yadnya</label>
-                                    <label className='mx-auto text-center font-bold text-md md:text-xl py-4 '>Metatah / Mepandes / Potong Gigi</label>
+                                    <label className='mx-auto text-center font-bold text-md md:text-xl py-4 animate-wingle momo-signature-regular '>Metatah / Mepandes / Potong Gigi</label>
                                     
                                     <div className='flex flex-col justify-center items-center'>
                                         <label className='mx-auto text-md text-center'>Kami sangat berterimakasih jika Bapak/Ibu/Saudara/i:</label>
@@ -314,11 +314,11 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                         <label className='mx-auto text-lg font-bold mb-4 '>{searchParams.get('nama')}</label>
                                             
                                             <label className='mx-auto text-md text-center mb-3'>berkenan hadir pada:</label>
-                                            <div className='border rounded-md flex flex-col py-2 px-5 text-[#493002]  border-yellow-800 mx-auto'>
-                                                <label className='mx-auto text-md md:text-xl font-bold text-center noto-serif-balinese-regular'>Selasa, 30 Des 2025</label>
+                                            <div className='border rounded-md flex flex-col py-2 px-5  border-yellow-800 mx-auto'>
+                                                <label className='mx-auto text-md md:text-xl font-bold text-center noto-serif-balinese-regular'>Selasa, 30 Desember 2025</label>
                                                 <label className='mx-auto text-md md:text-xl font-bold text-center noto-serif-balinese-regular'>Pukul 11.00 - 14.00</label>
                                             </div>
-                                            <label className='mx-auto text-sm md:text-md font-bold text-center noto-serif-balinese-regular mt-2 py-2 text-[#493002] '>Lokasi di <span className='font-bold '>Taman Prakerti Bhuana</span>, Beng, Gianyar</label>
+                                            <label className='mx-auto text-sm md:text-md font-bold text-center  mt-2 py-2 font-sans italic '>Lokasi Acara di: <span className=''>Taman Prakerti Bhuana</span>, Beng, Gianyar</label>
 
                                         </div>
                                         <label className='mx-auto text-xs pt-6 pb-3 text-center'></label>
@@ -328,45 +328,47 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                 </main>
 
                                 {/* Sane Mepandes*/}
-                                <main id='mepandes' className='border-t-4 border-[#c9a965] pt-2 pb-3 px-2 min-h-screen'>
+                                <main id='mepandes' className='border-t-4 border-[#c9a965] pt-2 pb-3 px-2 min-h-screen text-[#c9a965]'>
                                     <div>
                                         <div className='flex flex-col items-center justify-center'>
-                                            <label className='mx-auto font-bold text-md pt-1 pb-2 noto-serif-balinese-regular'>Om Swastyastu</label>
+                                            <label className='mx-auto font-bold text-md pt-6 pb-3 momo-signature-regular md:text-xl ease-in-out animate-fadeInScale'>Om Swastyastu</label>
                                         </div>
-                                        <label className='flex flex-col justify-center items-center mx-auto text-xs md:text-sm text-center font-bold mb-3'>Atas Asung Kertha Wara Nugraha Ida Sang Hyang Widhi Wasa/Tuhan Yang Maha Esa, perkenankan kami mengundang Bapak/Ibu/Saudara/i pada Upacara Manusa Yadnya Mepandes/Metatah/Potong Gigi putra-putri kami:</label>
+                                        <label className='flex flex-col justify-center items-center text-xs md:text-sm text-center font-bold mb-6 momo-signature-regular mx-4 md:mx-5 leading-7'>Atas Asung Kertha Wara Nugraha Ida Sang Hyang Widhi Wasa/Tuhan Yang Maha Esa, perkenankan kami mengundang Bapak/Ibu/Saudara/i pada Upacara Manusa Yadnya Mepandes/Metatah/Potong Gigi putra-putri kami:</label>
                                     
                                         {/* box foto */}
-                                        <div className='border-2 border-[#c9a965] rounded-md p-2 bg-[#c46c7f]'>
-                                            <div className='grid grid-cols-2 gap-4'>
+                                        <div className='border-2 border-[#302103] rounded-md px-3 py-6 bg-gray-950 noto-serif-balinese-regular'>
+                                            <div className='flex flex-col justify-center'>
                                                 <div className=' flex flex-col justify-center items-center '>
-                                                    <img className='h-24 w-24 rounded-full border-2 border-[#c9a965] animate-wingle mb-2' src="\image\diva.png" alt="foto" />
-                                                    <label className='flex text-center mx-auto text-xs md:text-sm font-bold mb-2  ' >Ni Putu Kartika Diva Putri</label></div>
+                                                    {/* <img className='h-24 w-24 rounded-full border-2 border-[#c9a965] animate-wingle mb-2' src="\image\diva.png" alt="foto" /> */}
+                                                    <label className='flex text-center mx-auto text-xs md:text-sm  mb-2  ' >Ni Putu Kartika Diva Putri</label></div>
+                                                     <label className='flex text-center mx-auto text-xs md:text-sm  mb-2' >I Made Kinara Sukmantara</label>
                                                 <div className=' flex flex-col justify-center items-center'>
-                                                    <img className='h-24 w-24 rounded-full border-2 border-[#c9a965] mb-2 animate-wingle' src="\image\rai-kinara3.png" alt="foto" />
-                                                    <label className='flex text-center mx-auto text-xs md:text-sm font-bold mb-2' >I Made Kinara Sukmantara</label>
+                                                    {/* <img className='h-24 w-24 rounded-full border-2 border-[#c9a965] mb-2 animate-wingle' src="\image\rai-kinara3.png" alt="foto" /> */}
+                                                   
+                                                </div>
+                                            </div>
+                                            <div className='flex justify-center flex-col mb-6'>
+                                                <label className='flex text-center mx-auto text-xs md:text-sm  mt-3'>Putri dan Putra dari Pasangan</label>
+                                                <label className='flex text-center mx-auto text-xs md:text-sm '>I Made Dwipayana & Diyah Retnowati </label>
+                                            </div>
+
+                                            <hr className='border border-[#302103] mb-6' />
+
+                                            <div className='flex flex-col justify-center'>
+                                                <div className=' flex flex-col justify-center items-center '>
+                                                    {/* <img className='h-24 w-24 rounded-full border-2 border-[#c9a965] mb-2 animate-wingle' src="\image\tita.png" alt="foto" /> */}
+                                                    <label className='flex text-center mx-auto text-xs md:text-sm  mb-2 '>Ni Putu Elsita Esayana</label></div>
+                                                <div className=' flex flex-col justify-center items-center'>
+                                                    {/* <img className='h-24 w-24 rounded-full border-2 border-[#c9a965] mb-2 animate-wingle' src="\image\vina.png" alt="foto" /> */}
+                                                    <label className='flex text-center mx-auto text-xs md:text-sm  mb-2'>Ni Made Vinasuya Reyana</label>
                                                 </div>
                                             </div>
                                             <div className='flex justify-center flex-col'>
-                                                <label className='flex text-center mx-auto text-xs md:text-sm font-bold mt-3'>Putri dan Putra dari Pasangan</label>
-                                                <label className='flex text-center mx-auto text-xs md:text-sm font-bold'>I Made Dwipayana ST & Diyah Retnowati SPd.</label>
+                                                <label className='flex text-center mx-auto text-xs md:text-sm  mt-3'>Putri dari Pasangan</label>
+                                                <label className='flex text-center mx-auto text-xs md:text-sm '>I Nyoman Supriyatna & Ni Ketut Noviani</label>
                                             </div>
                                         </div>
-                                        {/* box foto */}
-                                        <div className='border-2 border-[#c9a965] rounded-md p-2 bg-[#c46c7f] mt-4'>
-                                            <div className='grid grid-cols-2 gap-4'>
-                                                <div className=' flex flex-col justify-center items-center '>
-                                                    <img className='h-24 w-24 rounded-full border-2 border-[#c9a965] mb-2 animate-wingle' src="\image\tita.png" alt="foto" />
-                                                    <label className='flex text-center mx-auto text-xs md:text-sm font-bold mb-3 '>Ni Putu Elsita Esayana</label></div>
-                                                <div className=' flex flex-col justify-center items-center'>
-                                                    <img className='h-24 w-24 rounded-full border-2 border-[#c9a965] mb-2 animate-wingle' src="\image\vina.png" alt="foto" />
-                                                    <label className='flex text-center mx-auto text-xs md:text-sm font-bold mb-3'>Ni Made Vinasuya Reyana</label>
-                                                </div>
-                                            </div>
-                                            <div className='flex justify-center flex-col'>
-                                                <label className='flex text-center mx-auto text-xs md:text-sm font-bold mt-3'>Putri dari Pasangan</label>
-                                                <label className='flex text-center mx-auto text-xs md:text-sm font-bold'>I Nyoman Supriyatna SKom & Ni Ketut Noviani</label>
-                                            </div>
-                                        </div>
+                                       
                                     </div>
                                 </main>
 
@@ -376,19 +378,21 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                         <div className='flex flex-col justify-center mx-auto text-center'>
                                             <label className='text-xl mt-4 text-center'>Lokasi Acara</label>
                                             <label className='text-md text-center'>Taman Prakerti Bhuana</label>
-                                            <label className='text-md mb-4 text-center'>Jl. Gunung Agung, Beng, Gianyar, Bali</label>
+                                            <label className='text-md mb-5 text-center'>Jl. Gunung Agung, Beng, Gianyar, Bali</label>
 
                                         </div>
-                                        <iframe className='h-full w-full' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.728826869535!2d115.32599447381867!3d-8.525686686366983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd216542cc4ede7%3A0x2308fdb0be993019!2sTaman%20Prakerti%20Bhuana!5e0!3m2!1sen!2sid!4v1763222995590!5m2!1sen!2sid" 
-                                        // width="600" 
-                                        // height="450" 
-                                        allowFullScreen
-                                        loading="lazy" 
-                                        referrerPolicy="no-referrer-when-downgrade"
-                                        title='Responsive Google Map'>
-                                        </iframe>
+                                        <div className=''>
+                                            <iframe className='h-full w-full rounded' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.728826869535!2d115.32599447381867!3d-8.525686686366983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd216542cc4ede7%3A0x2308fdb0be993019!2sTaman%20Prakerti%20Bhuana!5e0!3m2!1sen!2sid!4v1763222995590!5m2!1sen!2sid" 
+                                            // width="600" 
+                                            // height="450" 
+                                            allowFullScreen
+                                            loading="lazy" 
+                                            referrerPolicy="no-referrer-when-downgrade"
+                                            title='Responsive Google Map'>
+                                            </iframe>
+                                        </div>
                                     </div>
-                                    <div className='flex flex-col justify-center mt-5 p-3'>
+                                    <div className='flex flex-col justify-center mt-4 p-3'>
                                         <label className='mx-auto font-serif mb-3'>Scan QR Code dibawah untuk mendapatkan lokasi upacara</label>
                                         <img  src="/image/QR-Code-Taman-Prakerti.png" alt="" className="mx-auto h-48 w-48 rounded" />
                                     </div>
