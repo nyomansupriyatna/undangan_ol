@@ -1,0 +1,1 @@
+import{j as e}from"./app-Dch1rl5z.js";/* empty css            */Images;slides.map((s,l)=>e.jsx("div",{className:"flex justify-center min-h-24 h-full  ",children:e.jsx("img",{onClick:()=>viewImage(l),src:`\\gallery\\${s.src}`,alt:"{slide.title}",className:" h-full object-cover rounded-md shadow-md"})},l)),opImage&&(`${slides[index].src}`,ChevronsLeft,ChevronsRight);
