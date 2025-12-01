@@ -22,10 +22,11 @@ Route::get('/', function () {
         'created_at' => Carbon::parse($ucapan->created_at)->diffForHumans(),
     ]);
 
-    return Inertia::render('welcome', [
-        'canRegister' => Features::enabled(Features::registration()),
-        'ucapans' => $ucapans,
-    ]);
+    // return Inertia::render('welcome', [
+    //     'canRegister' => Features::enabled(Features::registration()),
+    //     'ucapans' => $ucapans,
+    // ]);
+    return Inertia::render('testPage', []);
 })->name('home');
 
 

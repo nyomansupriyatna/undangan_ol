@@ -1,12 +1,16 @@
 import { Button } from '@headlessui/react';
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
-import { House, Users, Map, Images, SquarePen, CalendarDays, Volume2, VolumeX, LoaderCircle, Clock, ChevronsRight, ChevronsLeft } from 'lucide-react';
+import { House, Users, Map, Images, SquarePen, CalendarDays, Volume2, VolumeX, LoaderCircle, Clock, ChevronsRight, ChevronsLeft, Star, Heart  } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { CustomTextarea } from '@/components/ui/custom-textarea';
 import { Label } from '@radix-ui/react-dropdown-menu';
 import InputError from '@/components/input-error';
 import { Input } from '@/components/ui/input';
+import { motion, useInView, AnimatePresence } from "framer-motion";
+// import FadeInSection from './fadeInSection';
+// import { ref2, isInView2 } from "./useInView2.js" ;
+
 
 interface ucapan {
     id: number;
@@ -15,69 +19,127 @@ interface ucapan {
     created_at: string;
 }
 
-
 export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
     const { ucapans } = props;
     const [bukaUndangan, setBukaUndangan ] = useState(false);
     const searchParams = new URLSearchParams(window.location.search);
-    const [selonding] = useState(new Audio('/music/selonding.mp3'));
+    const [soundtrack] = useState(new Audio('/music/Shane Filan - Beautiful In White.mp3'));
     const [isPlaying, setIsPlaying] = useState(false);
 
     const [index, setIndex] = useState<number>();
     const [opImage, setOpImage] = useState<boolean>(false);
 
-    const slides = [
-        {
-            src: "diva.png",
-            title: 'Diva',
-            description: 'Description Diva',
-        },
-        {
-            src: 'tita.png',
-            title: 'Tita',
-            description: 'Description Tita',
-        },
-        {
-            src: 'rai.png',
-            title: 'Rai',
-            description: 'Description Rai',
-        },
-        {
-            src: 'vina.png',
-            title: 'Vina',
-            description: 'Description Vina',
-        },
-    ]
+    const sectionRefs = [useRef(null), useRef(null), useRef(null)];
+    const [autoScroll, setAutoScroll] = useState(true);
 
-    const viewImage = (index:number) => {
-        console.log('indexnya:',index);
-        setOpImage(true);
-        setIndex(index);
-        return (
-            <>
-                <div className='fixed top-0 z-60 border-2 border-blue-500 min-h-24 h-full w-full'>
-                    <img  src={`\\gallery\\${slides[index].src}`} alt={slides[index].title} className='border-2 border-red-500 h-full object-cover' />
-                </div>
-            </>
+    const [isVisible, setIsVisible] = useState(true);
 
-        )
-    }
+    const ref = useRef(null);
+    // const ref2 = useRef(null);
+    const isInView =  useInView(ref, { once: false, margin: "0px" });
+    // const isInView2 =  useInView(ref2, { once: false, margin: "0px" });
 
-    const panahKiri = (index:number) => {
-        if (index == 0 ) {
-            setIndex((slides.length)-1);
-        } else {
-            setIndex(index-1);
+
+    useEffect(() =>{
+        if (isInView) {
+            setIsVisible(true);
+         } else {
+            setIsVisible(false);
+         } 
+        console.log("is in view, visible ->",isInView, isVisible);
+    },[])
+   
+   
+    const [mouseY, setMouseY] = useState(0);
+
+   
+    // mouse move
+    useEffect(() => {
+        const handleMove = (e) => {
+        setMouseY(e.clientY);    // Y position relative to viewport
+        };
+
+        console.log('museY', mouseY);
+
+        window.addEventListener("mousemove", handleMove);
+        return () => window.removeEventListener("mousemove", handleMove);
+    }, []);
+
+
+
+    // const names = ["Tita & Kamron"]; // nama pengantin
+    const names = [
+        "Tita & Kamron", 
+        "Tita "+ <Heart />+" Kamron", 
+        "Kamron  Tita",
+        "Tita & Kamron Wedding"
+    ];
+
+    // const ite
+    // ms = [];
+
+
+    // console.log('isPlaying', isPlaying)
+
+    // count down -----------------------------------------------
+    const targetDate = new Date("2026-02-06T11:00:00").getTime();
+    const [timeLeft, setTimeLeft] = useState({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+    });
+    // count down -----------------------------------------------
+    useEffect(() => {
+        const timer = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+            clearInterval(timer);
+            return;
         }
-    }
+
+        setTimeLeft({
+            days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+            hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+            minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+            seconds: Math.floor((distance % (1000 * 60)) / 1000),
+        });
+        }, 1000);
+
+        return () => clearInterval(timer);
+    }, [timeLeft, targetDate]);
     
-    const panahKanan = (index:number) => {
-        if (index == (slides.length)-1 ) {
-            setIndex(0);
-        } else {
-            setIndex(index+1);
-        }
-    }
+    // const viewImage = (index:number) => {
+    //     console.log('indexnya:',index);
+    //     setOpImage(true);
+    //     setIndex(index);
+    //     return (
+    //         <>
+    //             <div className='fixed top-0 z-60 border-2 border-blue-500 min-h-24 h-full w-full'>
+    //                 <img  src={`\\gallery\\${slides[index].src}`} alt={slides[index].title} className='border-2 border-red-500 h-full object-cover' />
+    //             </div>
+    //         </>
+
+    //     )
+    // }
+
+    // const panahKiri = (index:number) => {
+    //     if (index == 0 ) {
+    //         setIndex((slides.length)-1);
+    //     } else {
+    //         setIndex(index-1);
+    //     }
+    // }
+    
+    // const panahKanan = (index:number) => {
+    //     if (index == (slides.length)-1 ) {
+    //         setIndex(0);
+    //     } else {
+    //         setIndex(index+1);
+    //     }
+    // }
 
      const openUndangan = () => {
         setBukaUndangan(true);
@@ -86,7 +148,7 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
     const closeUndangan = () => {
         setBukaUndangan(false);
         setIsPlaying(false)
-        selonding.currentTime = 0; // Reset the playback position to the start
+        // soundtrack.currentTime = 0; // Reset the playback position to the start
     };
    
     const toggleAudio = () => {
@@ -95,28 +157,26 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
 
     useEffect(() => {
         if (isPlaying) {
-            selonding.play();
+            soundtrack.play();
         } else {
-            selonding.pause();
+            soundtrack.pause();
         }
-    }, [isPlaying, selonding]); // The effect runs when isPlaying state changes
+    }, [isPlaying, soundtrack]); // The effect runs when isPlaying state changes
 
     // Cleanup function for when the component unmounts
     useEffect(() => {
         return () => {
-        selonding.pause();
-        // selonding.currentTime = 0;
+        soundtrack.pause();
+        // soundtrack.currentTime = 0;
         };
-    }, [selonding]);
+    }, [soundtrack]);
 
-    
-    
     const { data, setData, post,  processing, errors, reset } = useForm({
             nama:  '',
             ucapan:  '',
         });
 
-    
+    // simpan ucapan -------------------------------------------
     const submit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -126,58 +186,90 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                  reset();
             })
         });
-        
-       
     };
 
 
     return (
         <>
-            <Head title="Undangan Metatah">
+            <Head title="Tita & Kamron Wedding">
                 
             </Head>
-            {/* box hitam */}
-            {/* <p className='fixed z-50 text-white bg-black  flex justify-start'>Mouse Y Offset: {mouseOffsetY}px</p> */}
-            <div  className="relative flex min-h-screen flex-col items-center  justify-center bg-black overflow-y-scroll  ">
+            {/* box gray xxx*/}
+            <div   className="relative flex h-[150] min-h-screen flex-col items-center  justify-center bg-gray-700 overflow-y-scroll text-[#c9a965] ">
+            <p className='fixed z-50 text-white bg-black top-0 flex justify-start'>Mouse Y Offset: {mouseY}px</p>
+
+                {/* box undangan hitam texture max-widh-lg*/}
+                <div className="absolute mx-auto top-0 bg-linear-to-br from-black to-gray-800 border-4 border-[#c9a965]  text-[#c9a965] w-full max-w-lg  justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0 overflow-clip ">
+
+                     <>
+                        {/* ornamen pojok atas kiri*/}
+                        <div className='absolute -rotate-90'>
+                            <img className='h-28 opacity-70' src="\image\patra-pojok.webp" alt="patra-pojok" />
+                        </div>
+                        {/* ornamen pojok atas kanan */}
+                        <div className='absolute right-0'>
+                            <img className='h-28  opacity-70' src="\image\patra-pojok.webp" alt="patra-pojok" />
+                        </div>
+
+                        {/* ornamen pojok bawah kiri*/}
+                        <div className='absolute bottom-0 -rotate-180'>
+                            <img className='h-28 opacity-70' src="\image\patra-pojok.webp" alt="patra-pojok" />
+                        </div>
+                        {/* ornamen pojok bawah kanan*/}
+                        <div className='absolute bottom-0 right-0 rotate-90'>
+                            <img className='h-28 opacity-70' src="\image\patra-pojok.webp" alt="patra-pojok" />
+                        </div>
+                        
+                    </>
+
+
+                   {/* random text nama pengantin */}
+                    {/* {items.map((item, i) => (
+                        <div
+                        key={i}
+                        className="absolute text-teal-900 whitespace-nowrap pointer-events-none z-0"
+                        style={{
+                            top: `${item.top}%`,
+                            left: `${item.left}%`,
+                            opacity: item.opacity,
+                            transform: `rotate(${item.rotate}deg)`,
+                        }}
+                        >
+                         {item.text}
+                        </div>
+                    ))} */}
+
+                    {/* test button........................... */}
+                        <motion.button
+                            onClick={()=>setIsVisible(!isVisible)}
+                            className='w-full bg-red-500'
+                        >
+                            Show/Hide
+                        </motion.button>
+                    {/* end test............................... */}
                
-
-                {/* box undangan coklat max-widh-lg*/}
-                <div className="absolute mx-auto  border-4 border-[#c9a965] bg-linear-to-br from-pink-200 to-amber-900  text-[#3a2c02] w-full max-w-lg  justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0 ">
-
                     {/* halaman 0 sebelum buka undangan */}
                   
                     {!bukaUndangan && (
                         <div className='min-h-screen'>
-                            <>
-                                {/* ornamen pojok atas kiri */}
-                                <div className='absolute left-0'>
-                                    <img className='h-28 opacity-80' src="\image\ornamen-pojok2.webp" alt="" />
-                                </div>
-                                {/* ornamen pojok atas kanan*/}
-                                <div className='absolute right-0 rotate-90'>
-                                        <img className='h-28 opacity-70' src="\image\ornamen-pojok2.webp" alt="" />
-                                </div>
-                                {/* ornamen pojok bawah kiri*/}
-                                <div className='absolute bottom-0 rotate-270'>
-                                        <img className='h-28 opacity-70' src="\image\ornamen-pojok2.webp" alt="" />
-                                </div>
-                                {/* ornamen pojok bawah kanan*/}
-                                <div className='absolute bottom-0 right-0 rotate-180'>
-                                        <img className='h-28 opacity-70' src="\image\ornamen-pojok2.webp" alt="" />
-                                </div>
-                            </>
-                            <main className="px-4 pt-4 text-[#493002] flex justify-center flex-col">
-                                        
-                                <img className='h-28 mx-auto animate-pulse brightness-125' src="\image\ongk-sket.webp" alt="logo" />
+                            <main className=" pt-4 text-[#c9a965] flex justify-center flex-col ">
 
-                                <label className='mx-auto md:text-lg pt-3  noto-serif-balinese-regular animate-fadeInScale '>UNDANGAN</label>
-                                <label className='mx-auto font-bold md:text-lg pb-4 noto-serif-balinese-regular '>Upacara Manusa Yadnya</label>
-                                <label className='mx-auto text-[#ecd1a3] font-bold text-xl md:text-2xl py-4 momo-signature-regular animate-wingle text-shadow-md  text-shadow-[rgb(56,39,0)]'>Metatah / Potong Gigi</label>
+                                <label className='mx-auto text-md md:text-xl mt-12 noto-serif-balinese-regular animate-fadeInScale text-[#c9a965] mb-12 md:mb-18 '>The Wedding Of</label>
+
+                                  <div className='flex justify-center'>
+                                    <img className='h-36 w-36 rounded-full border-3 border-[#c9a965] object-cover z-50' src="\image\tita-kamron.webp" alt="backround-img" />
+                                </div>
+
+                                <label className='mx-auto font-bold py-4 dancing-script text-[#c9a965]  text-xl md:text-2xl'>Tita & Kamron</label>
+                                
+                                <div className='px-16 mb-5'>
+                                    <hr className='border-1 border-[#c9a965]' />
+                                </div>
                                 
                                 <div className='flex flex-col justify-center items-center'>
-                                    <label className='mx-auto text-xl py-2 '>Kepada Bapak/Ibu/Saudara/i:</label>
+                                    <label className='mx-auto text-xl py-2 '>Kepada yth:</label>
                                     {/* kotak nama dan alamat */}
-                                    {(searchParams.size > 0) && (<div className='border rounded-md border-yellow-800 mx-auto flex flex-col w-fit py-3 px-5 text-center'>
+                                    {(searchParams.size > 0) && (<div className='rounded-md mx-auto flex flex-col w-fit px-5 text-center'>
                                         <label className='mx-auto text-lg font-bold'>{searchParams.get('nama')}</label>
                                         {(searchParams.get('alamat')) && (
                                         <label className='mx-auto'>di {searchParams.get('alamat')}</label>)}
@@ -186,7 +278,7 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                     <label className='mx-auto text-xs pt-6 pb-3 text-center'>Tanpa mengurangi rasa hormat, kami bermaksud mengundang Anda untuk menghadiri acara kami</label>
 
                                     
-                                    {!bukaUndangan &&  (<Button className='m-auto w-fit hover:opacity-80 hover:cursor-pointer px-4 py-2 rounded border-amber-900  border-2 bg-[#ecd1a3] noto-serif-balinese-regular' onClick={openUndangan}>
+                                    {!bukaUndangan &&  (<Button className='m-auto w-fit hover:opacity-80 hover:cursor-pointer px-4 py-2 rounded border-[#c9a965]  border-2 bg-[#141413] noto-serif-balinese-regular' onClick={openUndangan}>
                                     <span className=''>Buka Undangan</span>  
                                     </Button> )}
                                 </div>
@@ -203,9 +295,9 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                         <>
                        
                         {/* menu bar */}
-                        <footer className="fixed z-20 bottom-0 bg-linear-to-br from-pink-200 to-amber-900  text-[#3a2c02]  w-full max-w-lg text-sm border-x-4 border-y-2 border-[#c9a965] px-2">
+                        <footer className="fixed z-20 bottom-0 bg-linear-to-br from-black to-gray-800 text-[#c9a965]  w-full max-w-lg text-sm border-x-4 border-y-2 border-[#c9a965] px-2">
                             <nav className="flex items-center justify-between 3">
-                                <>
+                                <> {/* menu bar bawah*/}
                                     <div
                                         onClick={closeUndangan}
                                         className="flex py-1.5 text-sm leading-normal hover:opacity-80 dark:text-[#EDEDEC] dark:hover:border-[#3E3E3A] hover:cursor-pointer"
@@ -271,58 +363,112 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                             className='fixed w-full max-w-lg bottom-16 z-50 flex flex-col mx-auto hover:cursor-pointer'>
                             
                             {isPlaying ? (<span className='flex justify-end mr-5'>
-                                <Volume2 className='text-green-700 h-8 w-8 opacity-60 bg-green-200 px-1 rounded-full'/>
+                                <Volume2 className='text-[#c9a956] h-8 w-8 opacity-60 bg-green-200 px-1 rounded-full'/>
                             </span>) :
                             (<span className='flex justify-end mr-5'>
-                                <VolumeX className='text-red-700 h-8 w-8 opacity-60 bg-red-200 px-1 rounded-full'/>
+                                <VolumeX className='text-gray-700 h-8 w-8 opacity-60 bg-gray-200 px-1 rounded-full'/>
                             </span>)}
                         </div>
-                        
-                        <div className="relative mx-auto  border-4 border-[#c9a965] bg-linear-to-br from-pink-200 to-amber-900  text-[#3a2c02] w-full max-w-lg  justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0 ">
-                            {/* <div className='relative bg-white pb-36'> */}
-                                <>
-                                    {/* ornamen pojok atas kiri */}
-                                    <div className='absolute left-0'>
-                                        <img className='h-28 opacity-80' src="\image\ornamen-pojok2.webp" alt="" />
-                                    </div>
-                                    {/* ornamen pojok atas kanan*/}
-                                    <div className='absolute right-0 rotate-90'>
-                                            <img className='h-28 opacity-70' src="\image\ornamen-pojok2.webp" alt="" />
-                                    </div>
-                                    {/* ornamen pojok bawah kiri*/}
-                                    <div className='absolute bottom-12 rotate-270'>
-                                            <img className='h-28 opacity-70' src="\image\ornamen-pojok2.webp" alt="" />
-                                    </div>
-                                    {/* ornamen pojok bawah kanan*/}
-                                    <div className='absolute bottom-12 right-0 rotate-180'>
-                                            <img className='h-28 opacity-70' src="\image\ornamen-pojok2.webp" alt="" />
-                                    </div>
-                                </>
 
-                                {/* Acara */}
-                                <main id='acara' className="px-4 pt-4 text-[#493002] flex justify-center flex-col h-screen max-h-screen">
-                                   
-                                    <img className='h-16 mx-auto mb-4' src="\image\swastyastu.webp" alt="logo" />
-                                    <label className='mx-auto font-bold md:text-lg pt-3 noto-serif-balinese-regular'>Undangan</label>
-                                    <label className='mx-auto font-bold md:text-lg noto-serif-balinese-regular'>Upacara Manusa Yadnya</label>
-                                    <label className='mx-auto text-center font-bold text-md md:text-xl py-4 '>Metatah / Mepandes / Potong Gigi</label>
+                        {/* test start -------------- */}
+                        
+                        <div 
+                            className="relative mx-auto text-[#c9a965] border-4 border-[#c9a965] bg-linear-to-br from-black to-gray-800  w-full max-w-lg  justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0 ">
+                            {/* <div className='relative bg-white pb-36'> */}
+                               
+                                {/* Acara--------------------------------- */}
+                                <main 
+                                    ref={ref}
+                                    id='acara' 
+                                    className="px-4  text-[#c9a965] flex justify-center flex-col h-screen max-h-screen">
+
+                                    <label className='mx-auto text-md md:text-xl mt-2 noto-serif-balinese-regular animate-fadeInScale text-[#c9a965] mb-3 md:mb-6 '>The Wedding Of</label>
+
+                                    <div  className="">
+                                        <AnimatePresence mode='popLayout'>
+                                        {isVisible &&
+                                            <motion.img
+                                                src="\image\tita-kamron.webp"
+                                                className='h-20 w-20 rounded-full border-3 border-[#c9a965] object-cover z-50 ' 
+                                                initial={{
+                                                    rotate: "0deg",
+                                                    scale: 0,
+                                                    y: 0
+                                                }}
+                                                animate={{
+                                                    rotate: "360deg",
+                                                    scale: 1,
+                                                    y: [0, 150, -150, -150, 0],
+                                                }}
+                                                exit={{
+                                                    rotate: "0deg",
+                                                    scale: 0,
+                                                    y: [0, 150, -150, -150, 0],
+                                                }}
+                                                transition={{
+                                                    duration: 1,
+                                                    // type: "spring",
+                                                    ease: "backInOut",
+                                                    times: [0, 0.25, 0.5, 0.85, 1]
+                                                }}
+                                            
+                                            />
+                                        
+                                        }
+                                        </AnimatePresence>
+                                    </div>
+
+                                    <div className='flex justify-center'>
+                                        <img className='h-20 w-20 rounded-full border-3 border-[#c9a965] object-cover z-50 ' src="\image\tita-kamron.webp" alt="backround-img" />
+                                    </div>
+
+                                    <label className='mx-auto font-bold py-4 dancing-script text-[#c9a965]  text-xl md:text-2xl'>Tita & Kamron</label>
                                     
+                                    <div className='px-16 mb-5'>
+                                        <hr className='border-1 border-[#c9a965]' />
+                                    </div>
+                                        
                                     <div className='flex flex-col justify-center items-center'>
-                                        <label className='mx-auto text-md text-center'>Kami sangat berterimakasih jika Bapak/Ibu/Saudara/i:</label>
+                                        <label className='mx-auto text-sm text-center'>Kami sangat berterimakasih jika Bapak/Ibu/Saudara/i:</label>
                                         {/* kotak nama dan alamat */}
                                        <div className='mx-auto flex flex-col w-fit px-5 text-center'>
-                                        <label className='mx-auto text-lg font-bold mb-4 '>{searchParams.get('nama')}</label>
+                                        <label className='mx-auto text-md font-bold mb-4 '>{searchParams.get('nama')}</label>
                                             
                                             <label className='mx-auto text-md text-center mb-3'>berkenan hadir pada:</label>
-                                            <div className='border rounded-md flex flex-col py-2 px-5 text-[#493002]  border-yellow-800 mx-auto'>
-                                                <label className='mx-auto text-md md:text-xl font-bold text-center noto-serif-balinese-regular'>Selasa, 30 Des 2025</label>
-                                                <label className='mx-auto text-md md:text-xl font-bold text-center noto-serif-balinese-regular'>Pukul 11.00 - 14.00</label>
+                                            <div className='border rounded-md flex flex-col py-2 px-5   border-amber-500 mx-auto'>
+                                                <label className='mx-auto text-md md:text-xl font-bold text-center noto-serif-balinese-regular'>Jumat, 6 Pebruari 2026</label>
+                                                <label className='mx-auto text-md md:text-xl font-bold text-center noto-serif-balinese-regular'>Pukul 18.00 - 20.00</label>
                                             </div>
-                                            <label className='mx-auto text-sm md:text-md font-bold text-center noto-serif-balinese-regular mt-2 py-2 text-[#493002] '>Lokasi di <span className='font-bold '>Taman Prakerti Bhuana</span>, Beng, Gianyar</label>
+                                            <label className='mx-auto text-sm md:text-md font-bold text-center noto-serif-balinese-regular mt-2 py-2 '>Lokasi di <span className='font-bold '>Banjar Tegeha No 2</span>, Sempidi, Mengwi, Badung</label>
 
                                         </div>
                                         <label className='mx-auto text-xs pt-6 pb-3 text-center'></label>
                                     
+                                    </div>
+
+                                      {/* count down */}
+                                    < div className='flex justify-center'>
+                                        <div className="flex gap-2 text-center">
+                                            <div className="bg-gray-800 p-2 rounded-xl w-16">
+                                                <p className="text-3xl font-bold">{timeLeft.days}</p>
+                                                <p className="text-sm">Hari</p>
+                                            </div>
+
+                                            <div className="bg-gray-800 p-2 rounded-xl w-16">
+                                                <p className="text-3xl font-bold">{timeLeft.hours}</p>
+                                                <p className="text-sm">Jam</p>
+                                            </div>
+
+                                            <div className="bg-gray-800 p-2 rounded-xl w-16">
+                                                <p className="text-3xl font-bold">{timeLeft.minutes}</p>
+                                                <p className="text-sm">Menit</p>
+                                            </div>
+
+                                            <div className="bg-gray-800 p-2 rounded-xl w-16">
+                                                <p className="text-3xl font-bold">{timeLeft.seconds}</p>
+                                                <p className="text-sm">Detik</p>
+                                            </div>
+                                        </div>
                                     </div>
                                     
                                 </main>
@@ -330,43 +476,8 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                 {/* Sane Mepandes*/}
                                 <main id='mepandes' className='border-t-4 border-[#c9a965] pt-2 pb-3 px-2 min-h-screen'>
                                     <div>
-                                        <div className='flex flex-col items-center justify-center'>
-                                            <label className='mx-auto font-bold text-md pt-1 pb-2 noto-serif-balinese-regular'>Om Swastyastu</label>
-                                        </div>
-                                        <label className='flex flex-col justify-center items-center mx-auto text-xs md:text-sm text-center font-bold mb-3'>Atas Asung Kertha Wara Nugraha Ida Sang Hyang Widhi Wasa/Tuhan Yang Maha Esa, perkenankan kami mengundang Bapak/Ibu/Saudara/i pada Upacara Manusa Yadnya Mepandes/Metatah/Potong Gigi putra-putri kami:</label>
+                                        
                                     
-                                        {/* box foto */}
-                                        <div className='border-2 border-[#c9a965] rounded-md p-2 bg-[#c46c7f]'>
-                                            <div className='grid grid-cols-2 gap-4'>
-                                                <div className=' flex flex-col justify-center items-center '>
-                                                    <img className='h-24 w-24 rounded-full border-2 border-[#c9a965] animate-wingle mb-2' src="\image\diva.png" alt="foto" />
-                                                    <label className='flex text-center mx-auto text-xs md:text-sm font-bold mb-2  ' >Ni Putu Kartika Diva Putri</label></div>
-                                                <div className=' flex flex-col justify-center items-center'>
-                                                    <img className='h-24 w-24 rounded-full border-2 border-[#c9a965] mb-2 animate-wingle' src="\image\rai-kinara3.png" alt="foto" />
-                                                    <label className='flex text-center mx-auto text-xs md:text-sm font-bold mb-2' >I Made Kinara Sukmantara</label>
-                                                </div>
-                                            </div>
-                                            <div className='flex justify-center flex-col'>
-                                                <label className='flex text-center mx-auto text-xs md:text-sm font-bold mt-3'>Putri dan Putra dari Pasangan</label>
-                                                <label className='flex text-center mx-auto text-xs md:text-sm font-bold'>I Made Dwipayana ST & Diyah Retnowati SPd.</label>
-                                            </div>
-                                        </div>
-                                        {/* box foto */}
-                                        <div className='border-2 border-[#c9a965] rounded-md p-2 bg-[#c46c7f] mt-4'>
-                                            <div className='grid grid-cols-2 gap-4'>
-                                                <div className=' flex flex-col justify-center items-center '>
-                                                    <img className='h-24 w-24 rounded-full border-2 border-[#c9a965] mb-2 animate-wingle' src="\image\tita.png" alt="foto" />
-                                                    <label className='flex text-center mx-auto text-xs md:text-sm font-bold mb-3 '>Ni Putu Elsita Esayana</label></div>
-                                                <div className=' flex flex-col justify-center items-center'>
-                                                    <img className='h-24 w-24 rounded-full border-2 border-[#c9a965] mb-2 animate-wingle' src="\image\vina.png" alt="foto" />
-                                                    <label className='flex text-center mx-auto text-xs md:text-sm font-bold mb-3'>Ni Made Vinasuya Reyana</label>
-                                                </div>
-                                            </div>
-                                            <div className='flex justify-center flex-col'>
-                                                <label className='flex text-center mx-auto text-xs md:text-sm font-bold mt-3'>Putri dari Pasangan</label>
-                                                <label className='flex text-center mx-auto text-xs md:text-sm font-bold'>I Nyoman Supriyatna SKom & Ni Ketut Noviani</label>
-                                            </div>
-                                        </div>
                                     </div>
                                 </main>
 
@@ -390,7 +501,7 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                     </div>
                                     <div className='flex flex-col justify-center mt-5 p-3'>
                                         <label className='mx-auto font-serif mb-3'>Scan QR Code dibawah untuk mendapatkan lokasi upacara</label>
-                                        <img  src="/image/QR-Code-Taman-Prakerti.png" alt="" className="mx-auto h-48 w-48 rounded" />
+                                       
                                     </div>
                                 </main>
 
@@ -400,44 +511,10 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                     <div className='relative h-full overflow-y-scroll w-full mx-auto'>
                                     <h1 className='font-bold p-2'>Galery foto</h1>
                                     
-                                    <div className='flex flex-col h-full'>
-                                            <div  className='flex flex-wrap justify-center md:min-h-48 h-32 md:h-48 w-fit mb-3 gap-2 md:gap3'>
-                                                {slides.map((slide, index) => (
-                                                    <div key={index} className='flex  min-h-24 h-full  '>
-                                                        <img onClick={()=>viewImage(index)} src={`\\gallery\\${slide.src}`} alt="{slide.title}" className=' h-full object-cover rounded-md shadow-md' />
-
-                                                    </div>
-                                                ))}
-
-                                            </div>
-                                            
-
-                                    </div>
+                                    
 
 
-
-                                    {/* full view on klik */}
-                                    {opImage && <div className='absolute flex justify-center items-center opacity-100 inset-0 max-w-lg'>
-                                        <div className='absolute flex items-center h-full opacity-100 border-amber-900 bg-white'>
-                                            
-                                            <div onClick={()=>setOpImage(false)} className='absolute z-70 right-0 top-0 rounded-bl-sm bg-grey-300 bg-red-100 hover:cursor-pointer px-2 bg-opacity-100 text-right text-xl font-bold'>
-                                                x
-                                            </div>
-                                            <img className='w-screen h-auto border backdrop-opacity-100'
-                                            src={`\\gallery\\${slides[index].src}`} alt="" />
-
-                                           {/* panah kiri */}
-                                            <div onClick={()=>panahKiri(index)}  className='rounded-full bg-black opacity-50 absolute inline-block align-middle z-70  text-white  hover:cursor-pointer  bg-opacity-100 text-xl font-bold  items-center left-0 px-1'>
-                                                <ChevronsLeft className='h-8'/>
-                                            </div>
-
-                                            {/* panah kanan */}
-                                            <div onClick={()=>panahKanan(index)} className='rounded-full bg-black opacity-50 absolute inline-block align-middle z-70  text-white  hover:cursor-pointer bg-opacity-100 text-xl font-bold  items-center right-1 px-1'>
-                                                <ChevronsRight className='h-8'/>
-                                            </div>
-                                        </div>
-                                    </div>}
-
+                                 
                                     </div> 
                                    
                                    
@@ -555,4 +632,7 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
         </>
     );
 }
+
+
+
 

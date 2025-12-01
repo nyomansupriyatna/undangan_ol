@@ -34,13 +34,15 @@
     <title inertia>{{ config('app.name', '') }}</title>
 
     <link rel="icon" href="/sn-logo.ico" sizes="any">
-    <link rel="icon" href="/sl-logo.ico" type="any">
+    <link rel="icon" href="/sn-logo.ico" type="any">
     <link rel="apple-touch-icon" href="/sn-logo.ico">
 
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Amarante&family=Momo+Signature&family=Noto+Serif+Balinese&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amarante&family=Dancing+Script:wght@400..700&family=Momo+Signature&family=Noto+Serif+Balinese&display=swap" rel="stylesheet">
 
     <style>
         .amarante-regular {
@@ -58,6 +60,13 @@
         .noto-serif-balinese-regular {
             font-family: "Noto Serif Balinese", serif;
             font-weight: 400;
+            font-style: normal;
+        }
+
+        .dancing-script {
+            font-family: "Dancing Script", cursive;
+            font-optical-sizing: auto;
+            font-weight: 500;
             font-style: normal;
         }
     </style>
