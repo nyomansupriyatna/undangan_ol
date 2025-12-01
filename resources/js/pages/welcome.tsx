@@ -8,8 +8,8 @@ import { Label } from '@radix-ui/react-dropdown-menu';
 import InputError from '@/components/input-error';
 import { Input } from '@/components/ui/input';
 import { motion, useInView, AnimatePresence } from "framer-motion";
-// import FadeInSection from './fadeInSection';
-// import { ref2, isInView2 } from "./useInView2.js" ;
+import FadeIn from "./fadeIn"
+import { once } from 'events';
 
 
 interface ucapan {
@@ -32,38 +32,18 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
     const sectionRefs = [useRef(null), useRef(null), useRef(null)];
     const [autoScroll, setAutoScroll] = useState(true);
 
-    const [isVisible, setIsVisible] = useState(true);
-
-    const ref = useRef(null);
-    // const ref2 = useRef(null);
-    const isInView =  useInView(ref, { once: false, margin: "0px" });
-    // const isInView2 =  useInView(ref2, { once: false, margin: "0px" });
-
-
-    useEffect(() =>{
-        if (isInView) {
-            setIsVisible(true);
-         } else {
-            setIsVisible(false);
-         } 
-        console.log("is in view, visible ->",isInView, isVisible);
-    },[])
-   
-   
-    const [mouseY, setMouseY] = useState(0);
-
    
     // mouse move
-    useEffect(() => {
-        const handleMove = (e) => {
-        setMouseY(e.clientY);    // Y position relative to viewport
-        };
+    // useEffect(() => {
+    //     const handleMove = (e) => {
+    //     setMouseY(e.clientY);    // Y position relative to viewport
+    //     };
 
-        console.log('museY', mouseY);
+    //     console.log('museY', mouseY);
 
-        window.addEventListener("mousemove", handleMove);
-        return () => window.removeEventListener("mousemove", handleMove);
-    }, []);
+    //     window.addEventListener("mousemove", handleMove);
+    //     return () => window.removeEventListener("mousemove", handleMove);
+    // }, []);
 
 
 
@@ -141,7 +121,7 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
     //     }
     // }
 
-     const openUndangan = () => {
+    const openUndangan = () => {
         setBukaUndangan(true);
         setIsPlaying(true)
     };
@@ -196,34 +176,43 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
             </Head>
             {/* box gray xxx*/}
             <div   className="relative flex h-[150] min-h-screen flex-col items-center  justify-center bg-gray-700 overflow-y-scroll text-[#c9a965] ">
-            <p className='fixed z-50 text-white bg-black top-0 flex justify-start'>Mouse Y Offset: {mouseY}px</p>
+            {/* <p className='fixed z-50 text-white bg-black top-0 flex justify-start'>Mouse Y Offset: {mouseY}px</p> */}
 
                 {/* box undangan hitam texture max-widh-lg*/}
                 <div className="absolute mx-auto top-0 bg-linear-to-br from-black to-gray-800 border-4 border-[#c9a965]  text-[#c9a965] w-full max-w-lg  justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0 overflow-clip ">
 
-                     <>
+                    <> {/* ornamen sudut*/}
                         {/* ornamen pojok atas kiri*/}
-                        <div className='absolute -rotate-90'>
-                            <img className='h-28 opacity-70' src="\image\patra-pojok.webp" alt="patra-pojok" />
-                        </div>
+                         <FadeIn duration={0.6} y={0} x={100} rotate={[0]} once={true}>
+                            <div className='absolute -rotate-90'>
+                                <img className='h-28 opacity-70' src="\image\patra-pojok.webp" alt="patra-pojok" />
+                            </div>
+                        </FadeIn>
+
                         {/* ornamen pojok atas kanan */}
-                        <div className='absolute right-0'>
-                            <img className='h-28  opacity-70' src="\image\patra-pojok.webp" alt="patra-pojok" />
-                        </div>
+                        <FadeIn duration={0.6} y={100} x={-100} rotate={[0]} once={true} >
+                            <div className='absolute right-0'>
+                                <img className='h-28  opacity-70' src="\image\patra-pojok.webp" alt="patra-pojok" />
+                            </div>
+                        </FadeIn>
 
                         {/* ornamen pojok bawah kiri*/}
                         <div className='absolute bottom-0 -rotate-180'>
-                            <img className='h-28 opacity-70' src="\image\patra-pojok.webp" alt="patra-pojok" />
+                            <FadeIn duration={0.6} y={100} x={-100} once={true} >
+                                <img className='h-28 opacity-70' src="\image\patra-pojok.webp" alt="patra-pojok" />
+                            </FadeIn>
                         </div>
+
                         {/* ornamen pojok bawah kanan*/}
                         <div className='absolute bottom-0 right-0 rotate-90'>
-                            <img className='h-28 opacity-70' src="\image\patra-pojok.webp" alt="patra-pojok" />
+                            <FadeIn duration={0.6} y={100} x={0} once={true} >
+                                <img className='h-28 opacity-70' src="\image\patra-pojok.webp" alt="patra-pojok" />
+                            </FadeIn>
                         </div>
-                        
                     </>
 
 
-                   {/* random text nama pengantin */}
+                {/* random text nama pengantin */}
                     {/* {items.map((item, i) => (
                         <div
                         key={i}
@@ -237,16 +226,8 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                         >
                          {item.text}
                         </div>
-                    ))} */}
+                     ))} */}
 
-                    {/* test button........................... */}
-                        <motion.button
-                            onClick={()=>setIsVisible(!isVisible)}
-                            className='w-full bg-red-500'
-                        >
-                            Show/Hide
-                        </motion.button>
-                    {/* end test............................... */}
                
                     {/* halaman 0 sebelum buka undangan */}
                   
@@ -256,11 +237,23 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
 
                                 <label className='mx-auto text-md md:text-xl mt-12 noto-serif-balinese-regular animate-fadeInScale text-[#c9a965] mb-12 md:mb-18 '>The Wedding Of</label>
 
-                                  <div className='flex justify-center'>
+                                <div className='flex justify-center'>
+                                    <FadeIn duration={2} y={100} x={0} once={true} rotate={360} delay={1} times={[0, 0.25, 0.5, 0.85, 1]}>
                                     <img className='h-36 w-36 rounded-full border-3 border-[#c9a965] object-cover z-50' src="\image\tita-kamron.webp" alt="backround-img" />
+                                    </FadeIn>
                                 </div>
 
-                                <label className='mx-auto font-bold py-4 dancing-script text-[#c9a965]  text-xl md:text-2xl'>Tita & Kamron</label>
+                                <div className='relative block h-16'>
+                                     <FadeIn duration={2} y={0} x={-100} once={true} rotate={0} delay={1} >
+                                        <label className='absolute top-0 left-1/2 -translate-x-1/2 mx-auto font-bold py-4 dancing-script text-[#c9a965]  text-xl md:text-2xl'>Tita &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                     </FadeIn>
+                                     <FadeIn duration={2} y={0} x={100} once={true} rotate={0} delay={1} >
+                                        <label className='absolute top-0 left-1/2 -translate-x-1/2 mx-auto font-bold py-4 dancing-script text-[#c9a965]  text-xl md:text-2xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kamron</label>
+                                     </FadeIn>
+                                     <FadeIn duration={2} y={100} x={0} once={true} rotate={0} delay={1} >
+                                        <label className='absolute top-0 left-1/2 -translate-x-1/2 mx-auto font-bold py-4 dancing-script text-[#c9a965]  text-xl md:text-2xl'>&</label>
+                                     </FadeIn>
+                                </div>
                                 
                                 <div className='px-16 mb-5'>
                                     <hr className='border-1 border-[#c9a965]' />
@@ -278,9 +271,13 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                     <label className='mx-auto text-xs pt-6 pb-3 text-center'>Tanpa mengurangi rasa hormat, kami bermaksud mengundang Anda untuk menghadiri acara kami</label>
 
                                     
-                                    {!bukaUndangan &&  (<Button className='m-auto w-fit hover:opacity-80 hover:cursor-pointer px-4 py-2 rounded border-[#c9a965]  border-2 bg-[#141413] noto-serif-balinese-regular' onClick={openUndangan}>
-                                    <span className=''>Buka Undangan</span>  
-                                    </Button> )}
+                                    {!bukaUndangan &&  (
+                                        <FadeIn duration={3} y={100} x={0} once={true} delay={2} >
+                                            <Button className='m-auto w-fit hover:opacity-80 hover:cursor-pointer px-4 py-2 rounded border-[#c9a965]  border-2 bg-[#141413] noto-serif-balinese-regular' onClick={openUndangan}>
+                                            <span className=''>Buka Undangan</span>  
+                                            </Button> 
+                                        </FadeIn>
+                                    )}
                                 </div>
                                 
                             </main>
