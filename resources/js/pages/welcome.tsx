@@ -1,7 +1,7 @@
 import { Button } from '@headlessui/react';
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
-import { House, Users, Map, Images, SquarePen, CalendarDays, Volume2, VolumeX, LoaderCircle, Clock, ChevronsRight, ChevronsLeft, Star, Heart  } from 'lucide-react';
+import { House, Users, Map, Images, SquarePen, CalendarDays, Volume2, VolumeX, LoaderCircle, Clock, ChevronsRight, ChevronsLeft, Star, Heart, Mail  } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { CustomTextarea } from '@/components/ui/custom-textarea';
 import { Label } from '@radix-ui/react-dropdown-menu';
@@ -175,22 +175,22 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                 
             </Head>
             {/* box gray xxx*/}
-            <div   className="relative flex h-[150] min-h-screen flex-col items-center  justify-center bg-gray-700 overflow-y-scroll text-[#c9a965] ">
+            <div className="relative flex h-[150] min-h-screen flex-col items-center  justify-center bg-gray-700 overflow-y-scroll text-[#c9a965] ">
             {/* <p className='fixed z-50 text-white bg-black top-0 flex justify-start'>Mouse Y Offset: {mouseY}px</p> */}
 
                 {/* box undangan hitam texture max-widh-lg*/}
-                <div className="absolute mx-auto top-0 bg-linear-to-br from-black to-gray-800 border-4 border-[#c9a965]  text-[#c9a965] w-full max-w-lg  justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0 overflow-clip ">
+                <div className="absolute mx-auto top-0 bg-linear-to-br from-black to-gray-800 border-4 border-[#c9a965]  text-[#c9a965] w-full max-w-lg max-h-screen  justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0 overflow-clip ">
 
                     <> {/* ornamen sudut*/}
                         {/* ornamen pojok atas kiri*/}
-                         <FadeIn duration={0.6} y={0} x={100} rotate={[0]} once={true}>
+                         <FadeIn duration={0.5} y={0} x={0} rotate={[-90, 0]} once={true}>
                             <div className='absolute -rotate-90'>
                                 <img className='h-28 opacity-70' src="\image\patra-pojok.webp" alt="patra-pojok" />
                             </div>
                         </FadeIn>
 
                         {/* ornamen pojok atas kanan */}
-                        <FadeIn duration={0.6} y={100} x={-100} rotate={[0]} once={true} >
+                        <FadeIn duration={0.5} y={0} x={0} rotate={[90, 0]} once={true}  >
                             <div className='absolute right-0'>
                                 <img className='h-28  opacity-70' src="\image\patra-pojok.webp" alt="patra-pojok" />
                             </div>
@@ -198,21 +198,21 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
 
                         {/* ornamen pojok bawah kiri*/}
                         <div className='absolute bottom-0 -rotate-180'>
-                            <FadeIn duration={0.6} y={100} x={-100} once={true} >
+                            <FadeIn duration={0.6} y={0} x={0} once={true} rotate={[90, 0]} delay={0.5}>
                                 <img className='h-28 opacity-70' src="\image\patra-pojok.webp" alt="patra-pojok" />
                             </FadeIn>
                         </div>
 
                         {/* ornamen pojok bawah kanan*/}
                         <div className='absolute bottom-0 right-0 rotate-90'>
-                            <FadeIn duration={0.6} y={100} x={0} once={true} >
+                            <FadeIn duration={0.6} y={100} x={0} once={true} rotate={[90,0]} delay={0.5}>
                                 <img className='h-28 opacity-70' src="\image\patra-pojok.webp" alt="patra-pojok" />
                             </FadeIn>
                         </div>
                     </>
 
 
-                {/* random text nama pengantin */}
+                    {/* random text nama pengantin */}
                     {/* {items.map((item, i) => (
                         <div
                         key={i}
@@ -237,12 +237,35 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
 
                                 <label className='mx-auto text-md md:text-xl mt-12 noto-serif-balinese-regular animate-fadeInScale text-[#c9a965] mb-12 md:mb-18 '>The Wedding Of</label>
 
+                                {/* tita kamron foto animasi */}
                                 <div className='flex justify-center'>
-                                    <FadeIn duration={2} y={100} x={0} once={true} rotate={360} delay={1} times={[0, 0.25, 0.5, 0.85, 1]}>
-                                    <img className='h-36 w-36 rounded-full border-3 border-[#c9a965] object-cover z-50' src="\image\tita-kamron.webp" alt="backround-img" />
-                                    </FadeIn>
+                                    
+                                    <div className='relative h-36 w-full flex justify-center'>
+                                        <FadeIn duration={2} y={0} x={100} once={true} rotate={0} delay={1}  xx={-70} opacity={[1,75,50,25,5,0]}>
+                                            {/* tita */}
+                                            <div className="absolute top-0 w-36 h-36 overflow-hidden translate-x-1/2">
+                                                <img className='h-36 w-36 rounded-r-full border-3 border-[#c9a965] object-cover z-10 -translate-x-1/2' src="\image\tita-kamron.webp" alt="backround-img" />
+                                            </div>
+                                        </FadeIn>
+
+                                        <FadeIn duration={2} y={0} x={-100} once={true} rotate={0} delay={1}  xx={-70} opacity={[1,75,50,25,5,0]}>
+                                             {/* kamron */}
+                                            <div className="absolute top-0 w-36 h-36 overflow-hidden -translate-x-1/2">
+                                                <img className='h-36 w-36 rounded-l-full border-3 border-[#c9a965] object-cover z-10 translate-x-1/2' src="\image\tita-kamron.webp" alt="backround-img" />
+                                            </div>
+                                        </FadeIn>
+                                        <FadeIn duration={0.1} y={0} x={0} once={true} rotate={0} delay={3} opacity={[0,1]}  >
+                                             {/* kamron */}
+                                            <div className="absolute top-0 w-36 h-36 overflow-hidden -translate-x-1/2">
+                                                <img className='h-36 w-36 rounded-full border-3  border-[#c9a965] object-cover z-50 ' src="\image\tita-kamron.webp" alt="backround-img" />
+                                            </div>
+                                        </FadeIn>
+                                    </div>
+
                                 </div>
 
+                               
+                                {/* Tita & Kamron animasi text */}
                                 <div className='relative block h-16'>
                                      <FadeIn duration={2} y={0} x={-100} once={true} rotate={0} delay={1} >
                                         <label className='absolute top-0 left-1/2 -translate-x-1/2 mx-auto font-bold py-4 dancing-script text-[#c9a965]  text-xl md:text-2xl'>Tita &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
@@ -250,31 +273,40 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                      <FadeIn duration={2} y={0} x={100} once={true} rotate={0} delay={1} >
                                         <label className='absolute top-0 left-1/2 -translate-x-1/2 mx-auto font-bold py-4 dancing-script text-[#c9a965]  text-xl md:text-2xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kamron</label>
                                      </FadeIn>
-                                     <FadeIn duration={2} y={100} x={0} once={true} rotate={0} delay={1} >
+                                     <FadeIn duration={2} y={100} x={0} once={true} rotate={360} delay={2} >
                                         <label className='absolute top-0 left-1/2 -translate-x-1/2 mx-auto font-bold py-4 dancing-script text-[#c9a965]  text-xl md:text-2xl'>&</label>
                                      </FadeIn>
                                 </div>
                                 
-                                <div className='px-16 mb-5'>
-                                    <hr className='border-1 border-[#c9a965]' />
-                                </div>
+                                <FadeIn duration={2} y={-100} x={0} once={true} rotate={0} delay={3} opacity={[0,0.2,25,0.5,0.7,1]}>
+                                    <div className='px-16 mb-5'>
+                                        <hr className='border-1 border-[#c9a965]' />
+                                    </div>
+                                </FadeIn>
                                 
                                 <div className='flex flex-col justify-center items-center'>
                                     <label className='mx-auto text-xl py-2 '>Kepada yth:</label>
                                     {/* kotak nama dan alamat */}
-                                    {(searchParams.size > 0) && (<div className='rounded-md mx-auto flex flex-col w-fit px-5 text-center'>
-                                        <label className='mx-auto text-lg font-bold'>{searchParams.get('nama')}</label>
-                                        {(searchParams.get('alamat')) && (
-                                        <label className='mx-auto'>di {searchParams.get('alamat')}</label>)}
-                                        <label className='mx-auto text-xs opacity-80 mt-3'>Mohon maaf apabila ada kesalahan penulisan nama/gelar</label>
-                                    </div>)}
+                                    {(searchParams.size > 0) && (
+                                        <FadeIn duration={1} y={0} x={-100} once={true} rotate={0} delay={3} >
+                                            <div className='rounded-md mx-auto flex flex-col w-fit px-5 text-center'>
+                                                <label className='mx-auto text-lg font-bold'>{searchParams.get('nama')}</label>
+                                                {(searchParams.get('alamat')) && (
+                                                <label className='mx-auto'>di {searchParams.get('alamat')}</label>)}
+                                                <label className='mx-auto text-xs opacity-80 mt-3'>Mohon maaf apabila ada kesalahan penulisan nama/gelar</label>
+                                            </div>
+                                        </FadeIn>
+                                    )}
                                     <label className='mx-auto text-xs pt-6 pb-3 text-center'>Tanpa mengurangi rasa hormat, kami bermaksud mengundang Anda untuk menghadiri acara kami</label>
 
                                     
                                     {!bukaUndangan &&  (
-                                        <FadeIn duration={3} y={100} x={0} once={true} delay={2} >
+                                        <FadeIn duration={2} y={-50} x={0} once={true} delay={2} opacity={[0,0.2,25,0.5,0.7,1]} >
                                             <Button className='m-auto w-fit hover:opacity-80 hover:cursor-pointer px-4 py-2 rounded border-[#c9a965]  border-2 bg-[#141413] noto-serif-balinese-regular' onClick={openUndangan}>
-                                            <span className=''>Buka Undangan</span>  
+                                            <span className='flex gap-2'>
+                                                <Mail/>
+                                                Buka Undangan
+                                                </span>  
                                             </Button> 
                                         </FadeIn>
                                     )}
@@ -319,7 +351,7 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                     >
                                         <div className='flex flex-col justify-center items-center text-xs'>
                                             <Users />
-                                            metatah
+                                            Story
                                         </div>
                                     </a>
                                     <a 
@@ -366,69 +398,113 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                 <VolumeX className='text-gray-700 h-8 w-8 opacity-60 bg-gray-200 px-1 rounded-full'/>
                             </span>)}
                         </div>
+                    
 
-                        {/* test start -------------- */}
-                        
                         <div 
                             className="relative mx-auto text-[#c9a965] border-4 border-[#c9a965] bg-linear-to-br from-black to-gray-800  w-full max-w-lg  justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0 ">
                             {/* <div className='relative bg-white pb-36'> */}
+
+                                        
+                                <>
+                                    {/* ornamen pojok atas kiri*/}
+                                    <FadeIn duration={0.5} y={0} x={0} rotate={[90, 0]} once={true}>
+                                        <div className='absolute -rotate-90'>
+                                            <img className='h-28 opacity-70' src="\image\patra-pojok.webp" alt="patra-pojok" />
+                                        </div>
+                                    </FadeIn>
+
+                                    {/* ornamen pojok atas kanan */}
+                                    <FadeIn duration={0.5} y={0} x={0} rotate={[90, 0]} once={true}  >
+                                        <div className='absolute right-0'>
+                                            <img className='h-28  opacity-70' src="\image\patra-pojok.webp" alt="patra-pojok" />
+                                        </div>
+                                    </FadeIn>
+
+                                    {/* ornamen pojok bawah kiri*/}
+                                    <div className='absolute bottom-0 -rotate-180'>
+                                        <FadeIn duration={0.6} y={0} x={0} once={true} rotate={[90, 0]} delay={0.5}>
+                                            <img className='h-28 opacity-70' src="\image\patra-pojok.webp" alt="patra-pojok" />
+                                        </FadeIn>
+                                    </div>
+
+                                    {/* ornamen pojok bawah kanan*/}
+                                    <div className='absolute bottom-0 right-0 rotate-90'>
+                                        <FadeIn duration={0.6} y={100} x={0} once={true} rotate={[90,0]} delay={0.5}>
+                                            <img className='h-28 opacity-70' src="\image\patra-pojok.webp" alt="patra-pojok" />
+                                        </FadeIn>
+                                    </div>
+                                </>
                                
                                 {/* Acara--------------------------------- */}
                                 <main 
-                                    ref={ref}
                                     id='acara' 
                                     className="px-4  text-[#c9a965] flex justify-center flex-col h-screen max-h-screen">
 
-                                    <label className='mx-auto text-md md:text-xl mt-2 noto-serif-balinese-regular animate-fadeInScale text-[#c9a965] mb-3 md:mb-6 '>The Wedding Of</label>
+                                    <label className='flex mx-auto text-md md:text-xl mt-2 noto-serif-balinese-regular text-[#c9a965] mb-3 md:mb-6 '>
+                                        <FadeIn duration={0.5} y={50} x={0} once={false} delay={0} >
+                                            <span>The&nbsp;</span>
+                                        </FadeIn>
+                                        <FadeIn duration={0.5} y={-25} x={0} once={false} delay={0.5} >
+                                            <span>Wedding&nbsp;</span>
+                                        </FadeIn>
+                                        <FadeIn duration={0.5} y={50} x={0} once={false} delay={1} >
+                                            <span>Of</span>
+                                        </FadeIn>
+                                         
+                                    </label>
 
-                                    <div  className="">
-                                        <AnimatePresence mode='popLayout'>
-                                        {isVisible &&
-                                            <motion.img
-                                                src="\image\tita-kamron.webp"
-                                                className='h-20 w-20 rounded-full border-3 border-[#c9a965] object-cover z-50 ' 
-                                                initial={{
-                                                    rotate: "0deg",
-                                                    scale: 0,
-                                                    y: 0
-                                                }}
-                                                animate={{
-                                                    rotate: "360deg",
-                                                    scale: 1,
-                                                    y: [0, 150, -150, -150, 0],
-                                                }}
-                                                exit={{
-                                                    rotate: "0deg",
-                                                    scale: 0,
-                                                    y: [0, 150, -150, -150, 0],
-                                                }}
-                                                transition={{
-                                                    duration: 1,
-                                                    // type: "spring",
-                                                    ease: "backInOut",
-                                                    times: [0, 0.25, 0.5, 0.85, 1]
-                                                }}
-                                            
-                                            />
-                                        
-                                        }
-                                        </AnimatePresence>
-                                    </div>
 
+                                    {/* tita kamron foto animasi */}
                                     <div className='flex justify-center'>
-                                        <img className='h-20 w-20 rounded-full border-3 border-[#c9a965] object-cover z-50 ' src="\image\tita-kamron.webp" alt="backround-img" />
+                                        
+                                        <div className='relative h-36 w-full flex justify-center'>
+                                            <FadeIn duration={2} y={0} x={100} once={false} rotate={0} delay={1}  xx={-70} opacity={[1,75,50,25,5,0]}>
+                                                {/* tita */}
+                                                <div className="absolute top-0 w-36 h-36 overflow-hidden translate-x-1/2">
+                                                    <img className='h-36 w-36 rounded-r-full border-3 border-[#c9a965] object-cover z-10 -translate-x-1/2' src="\image\tita-kamron.webp" alt="backround-img" />
+                                                </div>
+                                            </FadeIn>
+
+                                            <FadeIn duration={2} y={0} x={-100} once={false} rotate={0} delay={1}  xx={-70} opacity={[1,75,50,25,5,0]}>
+                                                {/* kamron */}
+                                                <div className="absolute top-0 w-36 h-36 overflow-hidden -translate-x-1/2">
+                                                    <img className='h-36 w-36 rounded-l-full border-3 border-[#c9a965] object-cover z-10 translate-x-1/2' src="\image\tita-kamron.webp" alt="backround-img" />
+                                                </div>
+                                            </FadeIn>
+                                            <FadeIn duration={0.1} y={0} x={0} once={false} rotate={0} delay={3} opacity={[0,1]}  >
+                                                {/* kamron */}
+                                                <div className="absolute top-0 w-36 h-36 overflow-hidden -translate-x-1/2">
+                                                    <img className='h-36 w-36 rounded-full border-3  border-[#c9a965] object-cover z-50 ' src="\image\tita-kamron.webp" alt="backround-img" />
+                                                </div>
+                                            </FadeIn>
+                                        </div>
+
                                     </div>
 
-                                    <label className='mx-auto font-bold py-4 dancing-script text-[#c9a965]  text-xl md:text-2xl'>Tita & Kamron</label>
-                                    
-                                    <div className='px-16 mb-5'>
-                                        <hr className='border-1 border-[#c9a965]' />
+                               
+                                    {/* Tita & Kamron animasi text */}
+                                    <div className='relative block h-16'>
+                                        <FadeIn duration={2} y={0} x={-100} once={false} rotate={0} delay={1} >
+                                            <label className='absolute top-0 left-1/2 -translate-x-1/2 mx-auto font-bold py-4 dancing-script text-[#c9a965]  text-xl md:text-2xl'>Tita &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                        </FadeIn>
+                                        <FadeIn duration={2} y={0} x={100} once={false} rotate={0} delay={1} >
+                                            <label className='absolute top-0 left-1/2 -translate-x-1/2 mx-auto font-bold py-4 dancing-script text-[#c9a965]  text-xl md:text-2xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kamron</label>
+                                        </FadeIn>
+                                        <FadeIn duration={2} y={100} x={0} once={false} rotate={360} delay={2} >
+                                            <label className='absolute top-0 left-1/2 -translate-x-1/2 mx-auto font-bold py-4 dancing-script text-[#c9a965]  text-xl md:text-2xl'>&</label>
+                                        </FadeIn>
                                     </div>
-                                        
+                                    
+                                    <FadeIn duration={2} y={-100} x={0} once={false} rotate={0} delay={3} opacity={[0,0.2,25,0.5,0.7,1]}>
+                                        <div className='px-16 mb-5'>
+                                            <hr className='border-1 border-[#c9a965]' />
+                                        </div>
+                                    </FadeIn>
+                                            
                                     <div className='flex flex-col justify-center items-center'>
                                         <label className='mx-auto text-sm text-center'>Kami sangat berterimakasih jika Bapak/Ibu/Saudara/i:</label>
                                         {/* kotak nama dan alamat */}
-                                       <div className='mx-auto flex flex-col w-fit px-5 text-center'>
+                                        <div className='mx-auto flex flex-col w-fit px-5 text-center'>
                                         <label className='mx-auto text-md font-bold mb-4 '>{searchParams.get('nama')}</label>
                                             
                                             <label className='mx-auto text-md text-center mb-3'>berkenan hadir pada:</label>
@@ -443,7 +519,7 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                     
                                     </div>
 
-                                      {/* count down */}
+                                    {/* count down */}
                                     < div className='flex justify-center'>
                                         <div className="flex gap-2 text-center">
                                             <div className="bg-gray-800 p-2 rounded-xl w-16">
@@ -470,10 +546,10 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                     
                                 </main>
 
-                                {/* Sane Mepandes*/}
+                                {/* The Story*/}
                                 <main id='mepandes' className='border-t-4 border-[#c9a965] pt-2 pb-3 px-2 min-h-screen'>
-                                    <div>
-                                        
+                                    <div className=''>
+                                        <h1 className='animate-fadeInUp text-center'>Our Story</h1>
                                     
                                     </div>
                                 </main>
@@ -483,22 +559,25 @@ export default function Welcome( {...props}: { ucapans: ucapan[] } ) {
                                     <div className='overflow-hidden'>
                                         <div className='flex flex-col justify-center mx-auto text-center'>
                                             <label className='text-xl mt-4 text-center'>Lokasi Acara</label>
-                                            <label className='text-md text-center'>Taman Prakerti Bhuana</label>
-                                            <label className='text-md mb-4 text-center'>Jl. Gunung Agung, Beng, Gianyar, Bali</label>
+                                            <label className='text-md text-center'>Banjar Tegeha No 2 Sempidi, Badung, BAli</label>
+                                            <label className='text-md mb-4 text-center'>Jl. Wilis No 2</label>
 
                                         </div>
-                                        <iframe className='h-full w-full' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.728826869535!2d115.32599447381867!3d-8.525686686366983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd216542cc4ede7%3A0x2308fdb0be993019!2sTaman%20Prakerti%20Bhuana!5e0!3m2!1sen!2sid!4v1763222995590!5m2!1sen!2sid" 
-                                        // width="600" 
-                                        // height="450" 
-                                        allowFullScreen
-                                        loading="lazy" 
-                                        referrerPolicy="no-referrer-when-downgrade"
-                                        title='Responsive Google Map'>
-                                        </iframe>
+
+                                            <iframe  
+                                                className='h-full w-full rounded' 
+                                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d389.73905268885164!2d115.18806232318182!3d-8.605213483977654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd23943a90b226d%3A0xffb1c05e7288d500!2shouse%20of%20architec!5e1!3m2!1sen!2sid!4v1764687409759!5m2!1sen!2sid" 
+                                                allowFullScreen 
+                                                loading="lazy" 
+                                                referrerPolicy="no-referrer-when-downgrade"
+                                                title='Responsive Google Map'
+                                                >
+                                            </iframe>
+
                                     </div>
                                     <div className='flex flex-col justify-center mt-5 p-3'>
-                                        <label className='mx-auto font-serif mb-3'>Scan QR Code dibawah untuk mendapatkan lokasi upacara</label>
-                                       
+                                        <label className='mx-auto font-serif mb-3 text-center'>Scan QR Code dibawah untuk mendapatkan lokasi upacara</label>
+                                         <img  src="/image/BrTegehaNo2.svg" alt="" className="mx-auto h-48 w-48 rounded" />
                                     </div>
                                 </main>
 
